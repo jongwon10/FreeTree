@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+  zoom:1.75;
+}
+/* 상단 제목 */
+.chatbot_title{
+  background-color:#20D5A4;
+}
+/* 텍스트 입력 박스 */
+.new-msg-content{
+  width: 100%;
+}
+/* 메시지 전송 버튼  */
+.submit-new-msg{
+  background-color: #1DB088;
+  color: #ffffff;
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.writer{
+  background-color:#20D5A4;
+}
+.date{
+  background-color:#20D5A4;
+}
+.content {
+  background-color: ghostwhite;
+}
+.msg {
+  background-color: #fff;
+  margin: 5%;
+  border: solid 0.2em black;
+  font-size: 0.4em;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

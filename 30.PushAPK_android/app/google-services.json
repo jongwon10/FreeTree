@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "718921121348",
+    "project_id": "freetreepush",
+    "storage_bucket": "freetreepush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718921121348:android:e404bdca0eede74338c611",
+        "android_client_info": {
+          "package_name": "wearethe.freetree.treeroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718921121348-rb227k27rqc8grre16vegnco7j41ekr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJimCiijmy7czO4Ai-R8como3d9fvvYmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718921121348-rb227k27rqc8grre16vegnco7j41ekr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
