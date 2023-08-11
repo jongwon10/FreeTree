@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.MemMypageMapper">
+
+    <insert id="resumeInsert" parameterType="wearethe.freetree.mypage.vo.ResumeVO">
+        <selectKey keyProperty="rnum" resultType="java.lang.String" order="BEFORE">
+            SELECT CONCAT("R", DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(RNUM), -4), 0) + 1, 4, '0')) AS rnum
+            FROM RESUME
+            WHERE RNUM LIKE CONCAT('R', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+        </selectKey>
+
+       INSERT INTO RESUME (RNUM, RNAME, RENGNAME,
+                           RBIRTH, RHP, RADDR,
+                           RPERIOD, RSCHNAME, RMAJOR,
+                           RTENURE, RRESPONS, RWORKNAME,
+                           RACQUI, RLICENSE, RPUBLISHER,
+                        MNUM,  INSERTDATE,
+                           UPDATEDATE, DELETEYN)
+                    VALUE (#{rnum},
+                           #{rname},
+                           #{rengname},
+                           #{rbirth},
+                           #{rhp},
+                           #{raddr},
+                           #{rperiod},
+                           #{rschname},
+                           #{rmajor},
+                           #{rtenure},
+                           #{rrespons},
+                           #{rworkname},
+                           #{racqui},
+                           #{rlicense},
+                           #{rpublisher},
+                           #{mnum},
+                           now(),
+                           now(),
+                           'Y')
+    </insert>
+
+    <select id="resumeSelect" parameterType="wearethe.freetree.mypage.vo.ResumeVO">
+        SELECT RNUM,
+               RNAME,
+               RENGNAME,
+               RBIRTH,
+               RHP,
+               RADDR,
+               RPERIOD,
+               RSCHNAME,
+               RMAJOR,
+               RTENURE,
+               RRESPONS,
+               RWORKNAME,
+               RACQUI,
+               RLICENSE,
+               RPUBLISHER,
+               MNUM,
+               DATE_FORMAT(INSERTDATE, '%Y-%m-%d') AS INSERTDATE,
+               DATE_FORMAT(UPDATEDATE, '%Y-%m-%d') AS UPDATEDATE,
+               DELETEYN
+        FROM   RESUME
+        WHERE  DELETEYN = 'Y'
+        AND    MNUM = #{mnum};
+    </select>
+
+    <update id="resumeUpdate" parameterType="wearethe.freetree.mypage.vo.ResumeVO">
+        UPDATE RESUME
+            SET    RHP          = #{rhp},
+                   RADDR        = #{raddr},
+                   RPERIOD      = #{rperiod},
+                   RSCHNAME     = #{rschname},
+                   RMAJOR       = #{rmajor},
+                   RTENURE      = #{rtenure},
+                   RRESPONS     = #{rrespons},
+                   RWORKNAME    = #{rworkname},
+                   RACQUI       = #{racqui},
+                   RLICENSE     = #{rlicense},
+                   RPUBLISHER   = #{rpublisher},
+                   UPDATEDATE   = now()
+            WHERE  DELETEYN = 'Y'
+            AND    MNUM = #{mnum};
+    </update>
+
+    <select id="prorSelect" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT   *
+        FROM PROJECT A
+                 INNER JOIN PROJECTAPPLICANT B ON A.PNUM = B.PNUM
+        WHERE   B.RNUM = #{rnum}
+          AND B.PINYES = '3';
+    </select>
+
+    <select id="pendSelect" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT   *
+        FROM PROJECT A
+                 INNER JOIN PROJECTAPPLICANT B ON A.PNUM = B.PNUM
+        WHERE   B.RNUM = #{rnum}
+          AND B.PINYES = '4';
+    </select>
+
+</mapper>

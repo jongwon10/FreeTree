@@ -1,0 +1,149 @@
+#memchartname{
+    width: 100%;
+}
+
+#board{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+}
+#mchart{
+    padding: 0px;
+    margin: 0px;
+}
+/*================[상단,하단]================*/
+#sangdan{
+    margin-top: 10px;
+}
+#hadan{
+    margin-top: 10px;
+}
+/*===========================================*/
+#text{
+    margin-left: 40px;
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+
+/*차트 이미지 크기조절*/
+#mchart > img{
+    width: 700px;
+    margin-left: 10px;
+}
+
+#mchart {
+    width: 700px; 
+    margin:0 auto;
+    animation: fadein 5s ease 3s;
+      -webkit-animation: fadein 3s; /* Safari and Chrome */
+    }
+    #mchart img{
+      width: 100%;
+    }
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    #mchart {
+        width: 700px; 
+        margin:0 auto;
+        animation: fadein 5s ease 3s;
+          -webkit-animation: fadein 3s; /* Safari and Chrome */
+        }
+        #mchart img{
+          width: 100%;
+        }
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @-webkit-keyframes fadein { /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+
+
+        #mchart {
+            width: 700px; 
+            margin:0 auto;
+            animation: fadein 5s ease 3s;
+              -webkit-animation: fadein 3s; /* Safari and Chrome */
+            }
+            #mchart img{
+              width: 100%;
+            }
+            @keyframes fadein {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            @-webkit-keyframes fadein { /* Safari and Chrome */
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+
+
+            #mchart {
+                width: 700px; 
+                margin:0 auto;
+                animation: fadein 5s ease 3s;
+                  -webkit-animation: fadein 3s; /* Safari and Chrome */
+                }
+                #mchart img{
+                  width: 100%;
+                }
+                @keyframes fadein {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+                
+                @-webkit-keyframes fadein { /* Safari and Chrome */
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }

@@ -1,0 +1,454 @@
+/* section_1 부분 */
+
+
+#section_1 {
+    width: 100%; /* 부모 요소의 너비를 100%로 설정 */
+    height: 100%;;
+}
+
+#sec1_top{
+    width: 100%;
+    height: 130px;
+    margin: 0 auto;
+    /*background-color: blanchedalmond;*/
+    border-bottom: 1px solid #515151;
+    display: flex;
+    align-items: center;
+}
+
+#sec1_title{
+    width: 600px;
+    height: 70px;
+    margin: 0 auto;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #486284;
+}
+
+#sec1_btn{
+    width: 100%;
+    height: 45px;
+    margin: 10px auto;
+}
+
+#btn_wrap{
+    width: 840px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#btn_wrap li{
+    width: 198.75px;
+    height:45px;
+    margin-right: 15px;
+    border-radius: 5px;
+    float: left;
+}
+
+#btn_wrap li:last-child{
+    margin-right: 0;
+}
+
+#btn_wrap button{
+    width: 198.75px;
+    height: 45px;
+    background-color: #757575;
+    border: none;
+    line-height: 45px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#btn_wrap img{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    float: left;
+    margin-top: 7.5px;
+    margin-left: 20px;
+}
+
+
+#btn_wrap p{
+    width: 170px;
+    text-align: center;
+}
+
+
+
+.sec1_content2{
+    width: 840px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 5px;
+    line-height: 40px;
+    /*background: #1DB088;*/
+    margin: 0 auto;
+}
+
+
+
+#hiddenList{
+    width: 840px;
+    background-color:white;
+    height: 0;
+    transition:  0.3s ease-out;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+#hiddenList li{
+    background-color: #1DB088;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+#hiddenList li:last-child{
+    margin-bottom: 0;
+}
+
+#hiddenList input{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+
+#hiddenList li:nth-child(1){
+    background-color: #919191;
+
+}
+
+
+#hiddenList li:nth-child(2){
+    background-color: #FF6767;
+}
+
+#hiddenList li:nth-child(3){
+    background-color: #4D74FF;
+}
+
+#hiddenList li:nth-child(4){
+    background-color: #EACD37;
+}
+
+
+.sec1_content2 h5{
+    margin-left: 20px;
+    float: left;
+}
+
+
+.sec1_content2 p{
+    width: 30px;
+    height: 40px;
+    text-align: center;
+    float: right;
+}
+
+.sec1_content2 button{
+    border: none;
+    background-color: transparent;
+    float: right;
+    line-height:40px ;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.sec1_content2 button:hover{
+    opacity: 60%;
+}
+
+.sub_title01 p,
+.sub_title02 p{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+span{
+    color: #20D5A4;
+}
+
+
+#sec1_center,
+#sec2_center{
+    width: 100%;
+    margin: 30px auto;
+}
+
+#container,
+#container2{
+    width: 840px;
+  /*  background-color: #ead2d2;*/
+    margin: 0 auto;
+}
+
+
+.con{
+    width: 840px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid #515151;
+    margin-bottom: 20px;
+}
+
+.con:last-child{
+    margin-bottom: 0;
+}
+
+.con_top{
+    width: 100%;
+    height: 150px;
+}
+
+.con_top li{
+    width: 350px;
+    height: 150px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.a_container{
+    width:300px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.c1{
+    width: 300px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+
+.g{
+    width: 60px;
+    height: 60px;
+    background-color: #dcdff8;
+    float: left;
+}
+
+.info{
+    width:200px;
+    height: 60px;
+   /* background-color: lightgoldenrodyellow;*/
+    float: right;
+}
+
+.info_text{
+    width: 100%;
+    height:30px;
+    font-size: 14px;
+    border: none;
+    line-height: 30px;
+    text-align: left;
+    outline: none;
+}
+
+.info input:nth-child(1){
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.c2{
+    width: 300px;
+    height: 35px;
+  /*  background-color: #486284;*/
+}
+
+
+.c2_text{
+    width:155px;
+    height: 35px;
+    background-color: #1DB088;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 35px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    float: left;
+    outline: none;
+}
+
+
+.c2 input:nth-child(2){
+    width: 96px;
+}
+
+
+#con_w{
+    width:470px;
+}
+
+#con_left,
+#con_left2{
+    width: 170px;
+    height: 150px;
+    float: left;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+#con_left p,
+#con_left2 p{
+    width: 100%;
+    height: 27px;
+    font-size: 14px;
+    text-align: left;
+    line-height: 25px;
+}
+
+#con_right,
+#con_right2{
+    width: 277px;
+    height:150px;
+    float: left;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+
+.con_right_text{
+    width: 277px;
+    height:  25px;
+    background-color: transparent;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.con_bottom{
+    width: 840px;
+    height: 50px;
+    /*background-color: #2fd5a6;*/
+}
+
+
+.con_b{
+    width:830px;
+    height: 50px;
+  /*  background-color: #d25454;*/
+    margin: 0 auto;
+}
+
+
+
+.buttonContainer1 {
+    width: 270px;
+    height: 45px;
+    background-color: #1db088;
+    border: none;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.buttonContainer8 {
+    width: 830px;
+    height: 45px;
+    background-color: #1db088;
+    border: none;
+    color: white;
+    padding-left: 315px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+
+}
+
+.buttonContainer2 {
+    width: 270px;
+    height: 45px;
+    background-color: #1db088;
+    border: none;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.buttonContainer3 {
+    width: 270px;
+    height: 45px;
+    background-color: #757575;
+    border: none;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.buttonContainer4 {
+    width: 270px;
+    height: 45px;
+    background-color: #757575;
+    border: none;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+
+.con_x_1 button{
+    background-color: #757575;
+    margin-right: 0;
+}
+
+.con_x_2 button{
+    background-color: #1db088;
+    margin-right: 0;
+}
+
+
+.con_b img, .con_x img{
+    width: 30px;
+    height: 30px;
+
+    float: left;
+    margin-top: 7.5px;
+}
+
+.con_b p{
+    line-height: 50px;
+    float: left;
+    font-size: 18px;
+    width: 170px;
+    height: 45px;
+    background:none;
+    border: none;
+}
+
+/*sub_title01 end*/
+
+

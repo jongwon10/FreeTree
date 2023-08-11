@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <link href="/static/css/adminlogin.css" type="text/css" rel="stylesheet">
+    <script>
+        $(document).ready(function() {
+          $("#loginBtn").click(function() {
+            var id = $("#id").val();
+            var pw = $("#pw").val();
+            $("#form").attr({
+            'action': '/adminlogin_check',
+                        'method': 'POST',
+                        'enctype': 'application/x-www-form-urlencoded'
+          }).submit();
+            });
+        });
+        </script>
+    </head>
+    
+    <body>
+    <div class="container">
+        <div class="card-body">
+            <form id="form">
+            <div class="in">
+                
+                 <input type="text"     name="id"  class="id" id="id" placeholder="아이디" required autofocus><br>
+                 <input type="password" name="pw"  class="pw" id="pw" placeholder="비밀번호" required><br>
+            
+            </div>
+            <input type="button" id="loginBtn" class="loginBtn" value="로그인"/>
+        </form>
+        </div>
+         
+    </div>
+    </body>
+</html>

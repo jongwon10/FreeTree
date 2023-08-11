@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.LoginMapper">
+
+    <select id="comLoginCheck" resultType="wearethe.freetree.company.vo.CompanyVO">
+        SELECT
+                A.CEMAIL        CEMAIL
+                ,A.CPW          CPW
+                ,A.CNUM         CNUM
+            FROM COMPANY A
+            WHERE   A.CEMAIL = #{cemail}
+            AND     A.CPW    = #{cpw}
+            AND     A.CLEAVE = 'Y'
+
+    </select>
+
+    <select id="memLoginCheck" resultType="wearethe.freetree.member.vo.MemberVO">
+        SELECT
+            A.MEMAIL 		    MEMAIL
+             ,A.MPW 		    MPW
+             ,A.MNUM            MNUM
+        FROM MEMBER A
+        WHERE  A.MEMAIL = #{memail}
+          AND    A.MPW = #{mpw}
+    </select>
+
+</mapper>

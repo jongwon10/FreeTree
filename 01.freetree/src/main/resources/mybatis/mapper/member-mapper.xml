@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.MemberMapper">
+
+    <insert id="getMemberInsert" parameterType="wearethe.freetree.member.vo.MemberVO">
+    <selectKey keyProperty="mnum" resultType="java.lang.String" order="BEFORE">
+        SELECT CONCAT("M", DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(MNUM), -4), 0) + 1, 4, '0')) AS mnum
+        FROM MEMBER
+        WHERE MNUM LIKE CONCAT('M', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+    </selectKey>
+
+        INSERT INTO MEMBER (MNUM, MEMAIL, MPW,
+                            MNAME, MHP, MBIRTH,
+                            MGENDER, MNICK, MINFODATE,
+                            MSNS, MTERMS, MREGISTER,
+                            MLEAVE, MPHOTO, MRESUME, MRESUMEMAIN)
+                    VALUES (#{mnum}, #{memail}, #{mpw},
+                            #{mname}, #{mhp}, #{mbirth},
+                            #{mgender}, #{mnick}, 'Y',
+                            'Y', 'Y', now(),
+                            'N', #{mphoto}, #{mresume}, #{mresumemain})
+
+    </insert>
+
+    <select id="memberSelect" resultType="wearethe.freetree.member.vo.MemberVO">
+
+        SELECT A.MNUM MNUM,
+               A.MNAME MNAME,
+               A.MEMAIL MEMAIL
+        FROM   MEMBER A
+        WHERE  A.MLEAVE = 'N'
+        AND    A.MNUM = #{mnum}
+
+    </select>
+
+
+
+</mapper>

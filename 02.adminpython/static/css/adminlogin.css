@@ -1,0 +1,63 @@
+.container {
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color: #515151;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.in{
+    padding-top: 50px;
+}
+
+.id {
+    border: 1px solid #515151;
+    margin-bottom: 20px;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 350px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: center;
+    outline: none;
+}
+
+.pw {
+    border: 1px solid #515151;
+    margin-bottom: 10px;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 350px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: center;
+    outline: none;   
+}
+
+.hadan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loginBtn{
+    margin-top: 30px;
+    width: 360px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+}

@@ -1,0 +1,154 @@
+body {
+    overflow: hidden;
+  }
+
+.checkbox-container{
+    padding-top: 30px;
+    padding-left: 0px;
+   
+}
+
+.container {
+    border: 1px solid #515151;
+    width: 420px;
+    height: 450px;
+    margin-right: 10 px;
+    border-radius: 10px; /*라운드 처리*/
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px auto;
+}
+
+#texttool00{
+    width: 381px;
+    height: 300px;
+    position: fixed;
+    border: none;
+
+}
+.tol{
+    width: 1000px;
+    background-color: #1DB088;
+}
+#editor {
+        border: none;
+        background-color: #ffffff;
+        
+}
+
+.hh{
+    color : #1DB088;
+    margin-left: 50px;
+}
+
+
+.in {
+    
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+#title {
+    border: 0px solid #515151;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    width: 370px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: center;
+    outline: none;
+}
+
+#email {
+    border: 0px solid #515151;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 370px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: center;
+    outline: none;
+    
+}
+
+#check-evry {
+    font-size: 16px;
+    color: #515151; /* 이메일 저장 텍스트의 색을 변경합니다 */
+    padding-bottom: 1px;
+            }
+#cb {
+    padding-left: 100px;
+}
+
+.in > hr {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border: none;
+    background-color: #515151;
+    padding: 0.3px;
+
+}
+
+.history{
+    padding-top: 20px;
+    height: 60px;
+    width: 100%;
+    font-size: 30px;
+}
+
+.history > hr {
+    width: 100%;
+
+}
+
+th{
+    font-size: 16px;
+    width: 600px;
+    margin: 0px 0px;
+    padding: 2px 0px;
+    
+}
+.t1{
+    width: 200px;
+}
+.t2{
+    width: 100px;
+}
+.t3{
+    width: 250px;
+}
+.t4{
+    width: 300px;
+}
+.t5{
+    width: 850px;
+}
+
+hr{
+    width: 100%;
+    margin-top: 10px;
+}
+
+td{
+    font-size: 14px;
+    text-align: center;
+}
+.Btn{
+    width: 60px;
+    margin-left:342px;
+    margin-top: 25px;
+    
+}

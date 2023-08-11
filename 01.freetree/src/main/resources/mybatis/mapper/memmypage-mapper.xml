@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.MemMypageMapper">
+
+    <insert id="memMypageInsert" parameterType="wearethe.freetree.mypage.vo.MemMypageVO">
+
+        INSERT INTO MEMBER_MYPAGE (MNUM, MNAME, MEMAIL, MPPOSITION,
+                                   BANKNAME, BANKAN, MPGIT, MPINSTAR,
+                                   MPINFO, PNUM, MPENDPROJECT, MPFILEUP)
+        VALUES (#{mnum},
+                #{mname},
+                #{memail},
+                #{mpposition},
+                #{bankname},
+                #{bankan},
+                #{mpgit},
+                #{mpinstar},
+                #{mpinfo},
+                #{pnum},
+                #{mpendproject},
+                #{mpfileup})
+
+    </insert>
+
+    <select id="memMypageSelectAll" resultType="wearethe.freetree.mypage.vo.MemMypageVO">
+
+        SELECT * FROM MEMBER_MYPAGE
+        <if test="search != null and search !=''">
+            <![CDATA[WHERE MPPOSITION LIKE CONCAT('%', #{search}, '%')
+                     OR MNAME LIKE CONCAT('%', #{search}, '%') ]]>
+        </if>
+        ORDER BY MNUM DESC
+        LIMIT 9 OFFSET #{offset};
+
+
+
+    </select>
+
+    <select id="memMypageSelect" resultType="wearethe.freetree.mypage.vo.MemMypageVO">
+
+        SELECT   A.MNUM         MNUM
+             ,A.MNAME        MNAME
+             ,A.MEMAIL       MEMAIL
+             ,A.MPPOSITION   MPPOSITION
+             ,A.BANKNAME     BANKNAME
+             ,A.BANKAN       BANKAN
+             ,A.MPGIT        MPGIT
+             ,A.MPINSTAR     MPINSTAR
+             ,A.MPINFO       MPINFO
+             ,A.PNUM         PNUM
+             ,A.MPENDPROJECT MPENDPROJECT
+             ,A.MPFILEUP     MPFILEUP
+        FROM    MEMBER_MYPAGE A
+        WHERE   A.MNUM = #{mnum}
+    </select>
+
+    <update id="memMypageUpdate" parameterType="wearethe.freetree.mypage.vo.MemMypageVO">
+
+        UPDATE MEMBER_MYPAGE
+        SET      MPPOSITION   = #{mpposition}
+          ,BANKNAME     = #{bankname}
+          ,BANKAN       = #{bankan}
+          ,MPGIT        = #{mpgit}
+          ,MPINSTAR     = #{mpinstar}
+          ,MPINFO       = #{mpinfo}
+          ,MPFILEUP     = #{mpfileup}
+        WHERE   MNUM = #{mnum}
+    </update>
+
+    <select id="memberSelect" resultType="wearethe.freetree.member.vo.MemberVO">
+
+        SELECT A.MNUM MNUM,
+               A.MNAME MNAME,
+               A.MEMAIL MEMAIL
+        FROM   MEMBER A
+        WHERE  A.MLEAVE = 'N'
+          AND    A.MNUM = #{mnum}
+
+    </select>
+
+    <select id="totalResult" parameterType="wearethe.freetree.mypage.vo.MemMypageVO" resultType="java.lang.Integer">
+
+        SELECT COUNT(*) AS totalresult
+        FROM member_mypage
+        <if test="search != null and search != ''">
+            <!-- Add condition for MPPOSITION -->
+            WHERE MPPOSITION LIKE CONCAT('%', #{search}, '%')
+            <!-- Add condition for Mname -->
+            OR MNAME LIKE CONCAT('%', #{search}, '%')
+        </if>;
+
+    </select>
+
+    <select id="proSelect" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT   *
+        FROM PROJECT A
+                 INNER JOIN PROJECTAPPLICANT B ON A.PNUM = B.PNUM
+        WHERE   B.MNUM = #{mnum}
+          AND B.PINYES = '3';
+    </select>
+
+    <select id="endSelect" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT   *
+        FROM PROJECT A
+                 INNER JOIN PROJECTAPPLICANT B ON A.PNUM = B.PNUM
+        WHERE   B.MNUM = #{mnum}
+          AND B.PINYES = '4';
+    </select>
+
+    <select id="myComSelect" resultType="wearethe.freetree.project.vo.ProjectVO">
+
+        SELECT   *
+        FROM    Project
+        WHERE   CNUM = #{cnum}
+        AND PDELETE = 'Y'
+    </select>
+
+
+    <!-- 성호형 기업 마이페이지-->
+
+    <select id="ComPageForm" parameterType="wearethe.freetree.mypage.vo.ComPageVO" resultType="wearethe.freetree.mypage.vo.ComPageVO">
+        SELECT
+            *
+        FROM COMPANY
+        WHERE CNUM = #{cnum} AND CLEAVE = 'Y'
+    </select>
+
+    <select id="ComPageUpdateForm" parameterType="wearethe.freetree.mypage.vo.ComPageVO" resultType="wearethe.freetree.mypage.vo.ComPageVO">
+        SELECT
+            c.*,
+            p.*
+        FROM COMPANY c
+                 INNER JOIN PROJECT p ON c.CNUM = p.CNUM
+        WHERE c.CNUM = #{cnum} AND c.CLEAVE = 'Y'
+    </select>
+
+    <update id="ComPageUpdate" parameterType="wearethe.freetree.mypage.vo.ComPageVO" >
+
+        UPDATE COMPANY
+        SET
+            CNUM    = #{cnum},
+            CNAME   = #{cname},
+            CEMAIL  = #{cemail},
+            CPROFILEIMG = #{cprofileimg},
+            CBACKIMG    = #{cbackimg},
+            CINFO       = #{cinfo},
+            CINFOIMG    = #{cinfoimg},
+            CPAGE       = #{cpage}
+
+        WHERE    CLEAVE= 'Y'
+          AND      CNUM = #{cnum}
+    </update>
+
+
+
+</mapper>

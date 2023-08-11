@@ -1,0 +1,207 @@
+/* HTML 요소에 적용될 기본 스타일 */
+
+*{
+    margin: 0;
+    padding: 0; 
+  }
+
+#commonForm{
+    display:block;
+    border:0;
+    width: 60%;
+    margin: auto;
+}
+
+#snsimg{
+    display: flex;
+    justify-content: space-evenly
+}
+
+ul, li{
+    list-style: nones;
+}
+
+h3{
+    margin: 2px;
+    text-align: center;
+}
+
+h4{
+    font-weight: bold;
+    margin:5px 30px;
+    text-align: center;
+}
+
+#in{
+    border: 1px solid black;
+    height: 950px;
+    width: 420px;
+    margin: 100px auto;
+    border-radius: 10px;
+}
+
+#mainbtn{
+    display: flex;
+    justify-content: space-around
+}
+
+input[type="checkbox"] {
+    text-align: left;
+    margin-left: 30px;
+}
+
+#mgender_m {
+    margin-left: 20px;
+}
+
+#mgender_f {
+    margin-left: 15px;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#t{
+    text-align: center;
+}
+
+#tt{
+    text-align: center;
+}
+
+.t1{
+    width:350px;
+    height:30px;
+    margin: 10px;
+}
+
+.t2_1{
+    width:200px;
+    height:30px;
+    margin-right:4px;
+}
+
+.t2_2{
+    width: 140px;
+    height:40px;
+    background-color: #1DB088;
+    border-radius: 5px;
+    border: 1px #1DB088 solid;
+    color: #fff;
+    padding:0px;
+}
+
+.t3{
+    width:125px;
+    height:30px;
+    margin: 0;
+}
+
+.t4{
+    
+    background-color: #1DB088;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px #1DB088 solid;
+    width:350px;
+    height:40px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    border-radius: 5px;
+    border: 1px #000000 solid;
+    margin: 3px;
+    padding: 5px;
+}
+
+#mpw {
+    border-radius: 5px;
+    border: 1px solid;
+    width:360px;
+    height:40px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+::placeholder {
+    font-size: 13px;
+    vertical-align: middle;
+    }
+
+#mpw_check {
+    border-radius: 5px;
+    border: 1px solid;
+    width:210px;
+    height:40px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+#cpw {
+    border-radius: 5px;
+    border: 1px solid;
+    width:360px;
+    height:40px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+#cpw_check {
+    border-radius: 5px;
+    border: 1px solid;
+    width:210px;
+    height:40px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+td{
+    margin:0px;
+    padding: 0px;
+}
+  
+#personal{
+    color: #1DB088;
+    border: none;
+    background-color: #fff;
+    font-size:20px;
+    font-weight: bold;
+    margin:5px 30px;
+}
+
+#corporate{
+    color: #ccc;
+    border: none;
+    background-color: #fff;
+    font-size:20px;
+    font-weight: bold;
+    margin:5px 30px;
+}
+
+button {
+    cursor: pointer;
+}
+
+#membtn, #combtn{
+    width: 350px;
+    height: 35px;
+    display: inline-block;
+    background-color: #1DB088;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px #1DB088 solid;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+hr{
+    width: 95%;
+    margin: 10px auto;
+}
+
+.blank{
+    height: 4em;
+}

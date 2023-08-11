@@ -1,0 +1,168 @@
+#body{
+    width: 100%;
+}
+h000{
+    font-size: 30px;
+    padding-left: 30px;
+}
+.sangdan{
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+.titlelist{
+    width: 100%;
+}
+.adlist01{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+h01{
+    padding-left: 2%;
+    padding-right: 2%;
+    border-right: 1px solid;
+}
+h02{
+    padding-left: 10%;
+    padding-right: 10%;
+    border-right: 1px solid;
+}
+h03{
+    padding-left: 10%;
+    padding-right: 10%;
+    border-right: 1px solid;
+}
+h04{
+    padding-left: 5%;
+    padding-right: 5%;
+    border-right: 1px solid;
+}
+h05{
+    padding-left: 1%;
+    padding-right: 1%;
+    border-right: 1px solid;
+}
+h06{
+    padding-left: 1%;
+    padding-right: 1%;
+    border-right: 1px solid;
+}
+h07{
+    padding-left: 5%;
+    padding-right: 4%;
+}
+
+/*하단*/
+.hadan{
+    margin-top: 30px;
+    width: 100%;
+    height: 150px;
+}
+/*광고 등록*/
+h001{
+    padding-left: 30px;
+    font-size: 30px;
+}
+/*---------------------------------------------------------*/
+.in{
+    padding-left: 25px;
+    margin-bottom: 10px;
+    padding-right: 15vw;
+}
+/*[광고기간]*/
+#adtime{
+    
+    width: 300px;
+    height: 30px;
+}
+
+/*[광고이름]*/
+#adname{
+    
+    width: 300px;
+    height: 30px;
+}
+/*[기업이름]*/
+#cpname{
+    
+    width: 300px;
+    height: 30px;
+}
+/*[클릭당비용]*/
+#clickdon{
+    
+    width: 300px;
+    height: 30px;
+}
+/*[등록버튼]*/
+.insertbtn{
+    background-color: #1DB088;
+    color: #ffffff;
+    margin-left: 10px;
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+   border: none;
+   cursor: pointer;
+}
+h002{
+    margin-left: 28px;
+}
+
+.miribogi{
+    width: 100%;
+    height: 250px;
+    background-color: #1DB088;
+}
+.greentext{
+    color:#1DB088;
+}
+
+/* ------ 결제페이지 사용 ---------*/
+.af-searchbox{
+    float: right;
+}
+
+.af-databox{
+    background-color: white;
+    width: 100%; 
+    overflow-x: auto;
+}
+
+.af-datatable{
+    width: 100%; 
+    border-collapse: collapse;
+    text-align: center;
+    border: solid 1px;
+}
+.af-searchText{
+    
+    width: 300px;
+    height: 30px;
+}
+.af-searchFilter{
+    height: 36px;
+}
+.af-pagingbox{
+    text-align:center;
+    height:25px;
+    margin-top:10px;
+}
+.af-pagingnow{
+    font-size:32px;
+    color:#1DB088;
+}
+.af-datathtext{
+    background-color:#1DB088;
+}
+.af-datatdtext{
+    background-color:whitesmoke;
+    border: dashed lightgray 1px;
+    border-top: none;
+}
+.af-datatdtext2{
+    border: dashed lightgray 1px;
+    border-top: none;
+}

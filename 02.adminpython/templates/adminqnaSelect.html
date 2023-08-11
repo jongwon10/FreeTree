@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="/static/css/questionSelect.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+         $(document).ready(function () {
+                //alert("jQuery ready() 함수 블럭 진입 >>> : ");
+
+        $(function() {
+            $.ajax({
+                url: "/side",
+                success: function (data) {
+                    $("#sidebar-load").html(data);
+                }
+            });
+
+        
+                // 답변달기 버튼 클릭 이벤트 처리
+                $(document).on("click", "#updateBtn", function () {
+                    var adminAnswer = $("#admincontent").val();
+                    var qnum = $("#qnum").val();
+                    console.log("qnum:", qnum); // 콘솔에 값 출력
+                    // 서버로 업데이트 요청을 보냅니다.
+                    $.ajax({
+                        type: "GET",
+                        url: "/adminqnaUpdate",
+                        data: {
+                            qnum: qnum,
+                            qanswer: adminAnswer
+                        },
+                        success: function (data) {
+                            $("#admincontent").val(adminAnswer);
+                            alert(data);
+                            // 성공적으로 업데이트되었을 경우, 페이지를 새로고침하지 않고 메시지를 출력합니다.
+                            alert("답변이 성공적으로 업데이트되었습니다.");
+                        },
+                        error: function () {
+                            alert("답변 업데이트에 실패했습니다.");
+                        }
+                    });
+                });
+
+                // 돌아가기 버튼 클릭 이벤트 처리
+                $(document).on("click", "#selectAllBtn", function () {
+                    location.href="adminqna";
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="sidebar-load"></div>
+<div class="container">
+    <form name="questionSelectF" id="questionSelectF">
+        <table class="seltable">
+            
+            <tr>
+                <td>제목</td>
+                <td colspan="4">
+                    {{ qna_detail.QNAME}}
+                    <input type="hidden" name="qnum" id="qnum" value="{{ qna_detail.QNUM}}" />
+                    <input type="hidden" name="fnum" id="fnum" value="{{ qna_detail.FNUM}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td>{{ qna_detail.FNUM }}</td>
+                <td>카테고리</td>
+                <td class="td_1">업체 후기</td>
+                <td>상세</td>
+                <td class="td_1">아</td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align:left">
+                    <img src="/static/img/user1.png" width="100" height="100" alt="image"><br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align:left">
+                    <textarea name="qcontent" id="qcontent" rows="5" cols="100" readonly>{{ qna_detail.QCONTENT }}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:left">
+                    <p>관리자 답변 :</p>
+                    <textarea name="qanswer" id="admincontent" rows="5" cols="100">{{ qna_detail.QANSWER }}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <button type="button" class="btn" id="updateBtn">답변달기</button>
+                    <button type="button" class="btn" id="selectAllBtn">돌아가기</button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+
+/*-----------------------개인 회원-----------------------*/
+#mamlist {
+    position: relative; /* 요소를 상대적인 위치로 설정 */
+    margin-top: 20px; /* 위쪽 여백 설정 */
+}
+
+/*타이틀 제목 [header: 개인회원/ header1: 기업회원]*/
+#header {
+    width:100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #000000;
+}
+#header1{
+    width:100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #000000;
+    margin-top: 100px;
+}
+
+span{
+    color: #1DB088;
+}
+/* 헤더 텍스트 */
+h3{
+    margin-left: 20px;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+/*[ 가입날짜 / 이름 / 닉네임 / 이메일 ]*/
+#tt1{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    table-layout: fixed;
+    display: table;
+    border-bottom: 1px solid #000000;
+}
+#list01{
+    width: 100%;
+    table-layout: fixed;
+    display: table;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+}
+.td-wr0, .td-wr1, .td-wr2, .td-wr3{
+    border: 1px solid #e9e9e9;
+}
+.lv{
+    padding-right: 80px;
+    width:0px;
+    border: 1px solid #e9e9e9;
+    border-left: none;
+}
+.lvbtn{
+    width: 70px;
+    border: 1px solid #e9e9e9;
+    border-right: none;
+}
+.nv0{
+    width: 150px;
+}
+#header .right-section, #header1 .right-section1 {
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 35px;
+}
+
+#header .right-section p, #header1 .right-section1 p {
+    margin-right: 10px;
+    font-size: 13px;
+
+}
+
+#header .right-section img, #header1 .right-section1 img{
+    width: 25px;
+    height: 20px;
+}
+
+#bpbtn{
+    margin-top: 10px;
+}
+#backbtn, #passbtn{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #383838;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.updateBtn {
+    border: none;
+    background-color: #5C5C5C;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer; /* 커서 모양을 손가락 모양으로 변경 */
+    transition: background-color 0.5s; /* 부드러운 변화를 위해 transition 효과 추가 */
+}
+
+.updateBtn:hover{
+    background-color: #14a686; /* hover 시 배경색 변경 */
+}
+
+
+
+/*버튼 css*/
+.bot{
+    border: none; /* 버튼 스타일 없애기 */
+    background: none; /* 버튼 배경 없애기 */
+    padding: 0; /* 내부 여백 없애기 */
+    float: right; /* 오른쪽 정렬 */
+    width: 30px;
+}
+
+/*버튼 이미지*/
+.tr-img{
+    width: 20px;
+    border: none; /* 버튼 스타일 없애기 */
+    background: none; /* 버튼 배경 없애기 */
+    margin-right: 10px; /* 오른쪽 간격 설정 */
+    cursor: pointer;
+}

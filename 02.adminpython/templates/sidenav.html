@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>sidenavbar</title>
+    <style>
+        /* CSS 스타일을 이용하여 페이지 레이아웃을 설정할 수 있습니다. */
+
+
+        body {
+            display: flex;
+            padding: 0%;
+            margin: 0%;
+        }
+
+        #sidebar {
+            width: 250px;
+            background-color: #383838;
+            padding: 20px;
+            padding-top: 50px;
+            min-height: 100vh; /* 사이드바가 화면 아래까지 채우도록 설정합니다. */
+            box-sizing: border-box; /* padding 값이 포함되도록 설정합니다. */
+            position: sticky;
+        }
+
+        #logo {
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        #logo > img {
+            width: 200px;
+            cursor: pointer;
+        }
+
+        #menu ul{
+            list-style: none;
+            padding: 20px;
+        }
+        #menu li{
+            display: inline-block;
+            white-space: nowrap;
+            margin-top: 50px;
+        }
+
+        #menu li a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            font-size: 15px;
+
+        }
+        #menu li img{
+            width: 25px;
+            margin-right: 10px;
+            vertical-align:  middle;
+        }
+
+        #content {
+            padding: 20px;
+        }
+
+    </style>
+    <script>
+        function toadminmain() {
+            location.href="/adminmain";
+        }
+    </script>
+</head>
+<body>
+<div id="sidebar">
+    <div id="logo">
+        <img src="static/img/whlogo.png" alt="로고" onclick="toadminmain()">
+    </div>
+    <div id="menu">
+        <ul>
+            <li><img src="static/img/mem.png"><a href="/adminmem">회원관리</a></li><br>
+            <li><img src="static/img/ha.png"><a href="/adminboard">프로젝트 관리</a></li><br>
+            <li><img src="static/img/r.png"><a href="/adminalramSelectAll">알림</a></li><br>
+            <li><img src="static/img/jun.png"><a href="/adminpage">결제내역</a></li><br>
+            <li><img src="static/img/head.png"><a href="/adminqna">고객지원 QnA</a></li><br>
+            <li><img src="static/img/head.png"><a href="/adminfaq">고객지원 FaQ</a></li><br>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+

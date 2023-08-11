@@ -1,0 +1,132 @@
+ .www{
+            top: 0; /* 화면 상단에 고정합니다. */
+            left: 0;
+            right: 0;
+            
+ }
+ 
+    #header1 {
+            
+            width:100%;
+            display: flex;
+            align-items: center;
+            
+         }
+
+         #header1 h3 {
+         margin-right: 10px;
+         font-size: 30px;
+         }
+         
+         #header1 .btn1{
+            background: #1DB088;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border: none;
+            cursor: pointer;
+         }
+
+        span{
+         color: #1DB088;
+        }
+          
+        .td-wrapper1 {
+            text-align: center;
+            padding-bottom: 0;
+            width: 200px;
+         }
+         .td-wrapper2 {
+            text-align: center;
+            padding-bottom: 0;
+            width: 330px;
+         }
+         .td-wrapper3 {
+            text-align: center;
+            padding-bottom: 0;
+            width: 800px;
+         }
+         .td-wrapper4 {
+            text-align: center;
+            padding-bottom: 0;
+            width: 0px;
+         }
+        .ctd{
+         text-align: center;
+        }
+         
+         .td-wr3, .td-wr4, .td-wr5, .td-wr6 {
+            text-align: center;
+            width: 10%;
+         }
+         .td-wr4{
+            padding-left: 10px;
+         }
+
+         hr{
+            width: 100%;
+            margin-bottom: 0;
+            
+         }
+         .hr4{
+            width: 100%;
+            margin-bottom: 0;
+            margin-top: 29px;
+         }
+         .tr01{
+            border-bottom: 1px solid #000;
+
+         }
+      .td-wr4, .td-wr5, .td-wr6{
+        border-radius: 2px;
+         border: solid 1px #dfdfdf;
+         color: #383838;
+      }
+
+         #container1 {
+            position: relative; /* 요소를 상대적인 위치로 설정 */
+            margin-top: 20px; /* 위쪽 여백 설정 */
+        }
+
+        #couple{
+         width: 100%;
+         overflow-x: auto;
+        }
+
+        .pnum{
+         margin-left: 20px;
+        }
+        
+        #couple table#list1{
+         border: solid 1px black;
+         border-left: none;
+         border-right: none;
+         width: 100%;
+         table-layout: fixed;
+         display: table;
+        }
+        #cople{
+         text-align: center;
+
+        }
+
+        .button01, .button02,.button03{
+            width: 100px;
+            border: none;
+            border-radius: 2px;
+            padding: 2px;
+            background-color: #5C5C5C;
+            color: white;
+            cursor: pointer; /* 커서 모양을 손가락 모양으로 변경 */
+            transition: background-color 0.5s; /* 부드러운 변화를 위해 transition 효과 추가 */
+        }
+        
+        .button01:hover, .button02:hover,.button03:hover{
+            background-color: #14a686; /* hover 시 배경색 변경 */
+        }
+
+        .b1, .b2, .b3{
+         display: flex;
+         float: left;
+        }

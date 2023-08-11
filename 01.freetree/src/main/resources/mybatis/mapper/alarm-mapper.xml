@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.AlarmMapper">
+
+    <select id="alarmReceivem" parameterType="wearethe.freetree.alarm.vo.AlarmVO" resultType="wearethe.freetree.alarm.vo.AlarmVO" >
+        SELECT alarm.*,
+               member.*,
+               company.*
+        FROM alarm
+                 LEFT OUTER JOIN member ON alarm.ALSENDMNUM = member.MNUM
+                 LEFT JOIN company ON alarm.ALSENDCNUM = company.CNUM
+        WHERE alarm.ALRECEIVMNUM = #{alreceivmnum}
+          AND alarm.ALRECEIVING = 'Y'
+        ORDER BY ALNUM DESC;
+    </select>
+
+    <select id="alarmReceivec" parameterType="wearethe.freetree.alarm.vo.AlarmVO" resultType="wearethe.freetree.alarm.vo.AlarmVO" >
+        SELECT alarm.*,
+               member.*,
+               company.*
+        FROM alarm
+                 LEFT OUTER JOIN member ON alarm.ALSENDMNUM = member.MNUM
+                 LEFT JOIN company ON alarm.ALSENDCNUM = company.CNUM
+        WHERE alarm.ALRECEIVCNUM = #{alreceivcnum}
+          AND alarm.ALRECEIVING = 'Y'
+        ORDER BY ALNUM DESC;
+    </select>
+
+    <update id="deleteAlarm" parameterType="wearethe.freetree.alarm.vo.AlarmVO">
+        UPDATE alarm
+        SET ALRECEIVING = 'N'
+        WHERE
+            ALNUM = #{alnum}
+          AND
+            ALRECEIVING = 'Y'
+    </update>
+
+    <insert id="alarmSupInsert" parameterType="wearethe.freetree.alarm.vo.AlarmVO">
+
+        INSERT INTO alarm (ALRECEIVING, ALSEND, ALSENDMNUM, ALRECEIVCNUM, ALCONTENT)
+        VALUES ('Y', SYSDATE(), #{alsendmnum}, #{alreceivcnum}, '지원했습니다.')
+
+    </insert>
+
+
+</mapper>

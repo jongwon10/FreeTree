@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+    color: #ededed;
+}
+body{
+    background-color: #1ad6a6;
+}
+div{
+    background-color:white;
+    text-align: left;
+    padding:2px 30px;
+    margin: 0px 20px;
+    border-radius:10px;
+}
+p{
+    padding: 0px 3px;
+    font-size: 24px;
+}

@@ -1,0 +1,46 @@
+h3{
+    text-align:center;
+}
+h1{
+    font-size: 48px;
+    color: #333333;
+    text-align:center;
+}
+.container{
+    margin: 190px 400px;
+}
+#qBtn {
+    font-size: 17px;
+    padding: 8px 12px;
+    margin: 2px;
+    background-color: #20D5A4;
+    color: white;
+    float: right;
+    border-radius: 5px;
+    cursor: pointer; /* 커서 모양을 손가락 모양으로 변경 */
+    transition: background-color 0.3s; /* 부드러운 변화를 위해 transition 효과 추가 */
+}
+#qBtn:hover{
+    background-color: #14a686; /* hover 시 배경색 변경 */
+}
+td{
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+    width: 20%;
+
+
+}
+
+#formtable{
+     padding-top: 50px;
+    padding-bottom: 30px;
+     text-align: center;
+     margin: 100px auto;
+     border: solid 3px #20D5A4;
+     border-radius: 20px;
+ }
+.qt{
+    width: 380px;
+    height: 30px;
+}

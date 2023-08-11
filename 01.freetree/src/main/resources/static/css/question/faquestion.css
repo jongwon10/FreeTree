@@ -1,0 +1,151 @@
+.py-60 {
+    padding: 80px 0;
+}
+
+
+section {
+    background: #F3F3F3;
+}
+h1{
+    font-size: 48px;
+    color: #333333;
+    text-align:center;
+}
+h2 {
+    font-family: Roboto-Light;
+    font-size: 32px;
+    color: #4d4d4d;
+    line-height: 1.25;
+    text-align:center;
+}
+
+.text-control-1 h2 {
+
+    margin-bottom: 20px;
+}
+
+.divm{
+    display: flex;
+}
+.q-mark {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #20D5A4;
+    padding: 18px 0 18px 18px;
+    display: flex;
+    line-height: 1.5;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.question {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5C5C5C;
+    line-height: 1.5;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.material-icons.drop {
+    padding: 20px;
+    font-size: 2rem;
+    color: #20D5A4;
+    transition: transform .5s ease-in-out;
+}
+
+.answer {
+    font-size: 16px;
+    color: #5C5C5C;
+    padding: 16px;
+    padding-left: 52px;
+    padding-bottom: 32px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.accordion {
+    background-color: #ffffff;
+    color: #444;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-radius: 10px;
+}
+
+.question-wrapper {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color .25s ease-in-out;
+}
+.action:focus question-wrapper{
+    background-color: #EBEBEB;
+}
+.answer-wrapper {
+    display: none;
+
+}
+
+.icon-expend {
+    transform: rotateX(180deg);
+    transition: transform .75s ease-in-out;
+}
+
+.active,
+.accordion:hover .question-wrapper {
+    background-color: #EBEBEB;
+}
+
+.active p {
+    color: #3D3D3D;
+}
+
+.container {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        max-width: 1144px;
+    }
+}
+.faqs-section{
+    margin-top:110px;
+}
+#qna{
+
+    background-color: #20D5A4;
+    font-size: 20px;
+    color: white;
+    padding: 7px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer; /* 커서 모양을 손가락 모양으로 변경 */
+    transition: background-color 0.3s; /* 부드러운 변화를 위해 transition 효과 추가 */
+    font-weight: bold;
+    float: right;
+}
+#qna:hover {
+    background-color: #14a686; /* hover 시 배경색 변경 */
+    /* 다른 스타일도 추가 가능 */
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>admin mainpage</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="/static/css/adminmain.css" type="text/css" rel="stylesheet">
+    <script>
+          $(function() {
+           $.ajax({
+              url: "/side", // 헤더를 반환하는 엔드포인트
+              success: function(data) {
+                 $("#sidebar-load").html(data); 
+              }
+           });
+        });
+    </script>
+    </head>
+    
+    <body>
+        <div id="sidebar-load"></div><!--네비바-->
+            <div id="board">
+                <div id="sangdan">
+                    <div id="text">
+                        <tr>개인신규 가입자</tr>
+                    </div>
+                    <div id="mchart">
+                        <img src="static/graph/mgraph.png" alt="날짜별 개인회원 수 그래프">
+                    </div>
+
+                    <div id="text">
+                        <tr>프로젝트 등록수</tr>
+                    </div>
+                    <div id="mchart">
+                        <img src="static/graph/pgraph.png" alt="날짜별 프로젝트 수 그래프">
+                    </div>  
+                </div>
+
+                <div id="hadan">
+                    <div id="text">
+                        <tr>기업신규 가입자</tr>
+                    </div>
+
+                    <div id="mchart">
+                        <img src="static/graph/cgraph.png" alt="날짜별 기업회원 수 그래프">
+                    </div>
+                    <div id="text">
+                        <tr>문의수</tr>
+                    </div>
+                    <div id="mchart">    
+                        <img src="static/graph/qgraph.png" alt="날짜별 문의 수 그래프">
+                    </div>  
+                </div>
+            </div>  
+    </body>
+</html>

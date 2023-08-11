@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>관리자페이지 알림</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <!-- Load the Quill library -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/adminalram.css">
+        
+
+        <script>
+            $(document).ready(function(){
+
+        $(function() {
+            $.ajax({
+                url: "side", // 헤더를 반환하는 엔드포인트
+                success: function(data) {
+                    $("#sidebar-load").html(data);
+                }
+            });
+        })
+
+        $("#Btn").click(function() {
+        // 사용자가 입력한 값을 가져옴
+        var title = $("#title").val();
+        var email = $("#email").val();
+        var content = quill.getText(); // 여기서 quill은 앞서 로드한 Quill 라이브러리를 초기화한 변수일 것입니다.
+
+        // 서버로 전송할 데이터 객체를 생성
+        var data = {
+            title: title,
+            email: email,
+            content: content
+        };
+
+        // AJAX를 이용하여 데이터를 서버로 전송
+        $.ajax({
+            type: "POST",
+            url: "/adminalramSelectAll", // 알림 페이지 라우트로 요청을 보냄
+            data: data,
+            success: function(response) {
+                // 요청이 성공적으로 처리된 후 실행되는 콜백 함수
+                // 서버로부터 받은 응답(response)에 따라 적절한 동작을 수행할 수 있음
+                console.log(response);
+                // 페이지 새로고침
+                location.reload();
+                
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때 실행되는 콜백 함수
+                console.log(error);
+                // 오류 처리 등 추가적인 작업 수행 가능
+            }
+        });
+    });
+    });
+        </script>
+    </head>
+        <body>
+            <div id="sidebar-load"></div>
+           
+<!------------------------------------------------------------------------------------------------------------------->
+    <div class="checkbox-container">
+        
+
+            <div class="container">
+                <div class="card-body">
+                    <form class="form-signin" method="POST" action="/login">
+
+                        <div class="in">
+                            <input type="title" name="title" id="title" placeholder="제목" required autofocus><br>
+                            <hr>
+                            <input type="email" name="email" id="email" placeholder="받는 사람의 이메일" required><br>
+                            <hr>
+                                        
+                            <!-- Create the editor container -->
+                            <div id="texttool00">
+                                 <div id="editor"> </div>  
+                                 <button type="button" class="Btn" id="Btn">보내기</button>
+                                </div>
+                                
+                                <div class="textm">
+                                    <script src="/static/js/adminalram.js" class="tol"></script>
+                                    
+                                </div>
+                                
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="history">
+                <span class="hh">H</span>istory
+                <hr>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    
+                    <th class="t1">전송날짜<hr></th>
+                    <th class="t2">발신자<hr></th>
+                    <th class="t3">수신자<hr></th>
+                    <th class="t4">제목<hr></th>
+                    <th class="t5">내용<hr></th>
+                    
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>
+                        {% for row in alram_list %}
+                        <td class="n1">{{row.ALSEND}}</td>
+                        <td class="n2">{{ row.MNAME }}</td>
+                        <td class="n3">{{ row.CNAME }}</td>
+                        <td class="n4">{{row.ALNAME}}</td>
+                        <td class="n5">{{row.ALCONTENT}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                    
+            </table>
+                
+            
+        </div>     
+        </div>
+    </div>
+        </body>
+</html>

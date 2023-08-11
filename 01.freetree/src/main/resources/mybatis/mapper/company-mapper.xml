@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.CompanyMapper">
+
+    <insert id="getCompanyInsert" parameterType="wearethe.freetree.company.vo.CompanyVO">
+        <selectKey keyProperty="cnum" resultType="java.lang.String" order="BEFORE">
+            SELECT CONCAT("C", DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(CNUM), -4), 0) + 1, 4, '0')) AS cnum
+            FROM COMPANY
+            WHERE CNUM LIKE CONCAT('C', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+        </selectKey>
+
+        INSERT INTO COMPANY (CNUM, CEMAIL, CPW,
+                            CHP, CTEL, CCOMTYPE,
+                            CBIZNUM, CNAME, CPOSTALCODE,
+                            CROADADDR, CADDR, CROADDETAIL,
+                            CINFODATE, CTERMS, CREGISTER,
+                            CLEAVE, CAPPRO, CPERSONNEL, CDELEGATE)
+                    VALUES (#{cnum},
+                            #{cemail},
+                            #{cpw},
+                            #{chp},
+                            #{ctel},
+                            #{ccomtype},
+                            #{cbiznum},
+                            #{cname},
+                            #{cpostalcode},
+                            #{croadaddr},
+                            #{caddr},
+                            #{croaddetail},
+                            'Y',
+                            'N',
+                            now(),
+                            'N',
+                            'Y',
+                            #{cpersonnel},
+                            #{cdelegate})
+
+    </insert>
+
+</mapper>

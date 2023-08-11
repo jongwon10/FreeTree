@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="/static/css/adminqna.css" type="text/css" rel="stylesheet">
+    
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#fgo', function(){
+                location.href="adminfaq"
+            });  
+            });
+    </script>
+    <script>
+        $(document).ready(function () {
+        $(function() {
+            $.ajax({
+                url: "/side", // 헤더를 반환하는 엔드포인트
+                success: function (data) {
+                    $("#sidebar-load").html(data);
+                }
+            });
+
+
+                // chkAll 체크박스 체크 확인하기
+                $(document).on("click", "#chkAll", function () {
+
+                    if ($(this).prop('checked')) {
+                        $('.qnum').prop('checked', false);
+                    }
+                });
+                // qnum 체크박스 체크 확인하기
+                $(document).on("click", "#qnum", function () {
+                        //alert("체크 완료")
+                    if ($(this).prop('checked')) {
+                        $('.qnum').prop('checked', false);
+                        $(this).prop('checked', true);
+                    }
+                });
+
+                $(document).on("click", "#contentsBtn", function () {
+                       // alert($(".qnum:checked").val());
+                if ($('.qnum:checked').length == 0) {
+                        alert("글번호 하나를 선택하세요!!");
+                        return;
+                    }
+                    $("#questionList").attr({"method": "GET", "action": "adminqnaSelect"}).submit();
+                });
+
+
+                //  D
+                $(document).on("click", "#deletetBtn", function () {
+                    if ($('.qnum:checked').length == 0) {
+                        alert("삭제할 글번호 하나를 선택하세요!!");
+                        return;
+                    }
+                    $("#questionList").attr({"method": "GET", "action": "adminqnaDelete"}).submit();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="sidebar-load"></div>
+
+<div class="container">         
+    <form name="questionList" id="questionList">
+            <div id="titleqna"><h3><span>Q</span>&A</h3></div>
+        <div id="titlebord">
+            <table id="listtitle">  
+                <th class="tt"></th>  
+                <th class="t1">작성일</th>
+                <th class="t2">제목</th>
+                <th class="t3">내용</th>
+            </table>
+        </div>    
+        <tbody>
+            {% for row in question_list %}
+            <tr>
+            <table id="qnalist">
+                    <td class="bb">
+                        <input type="checkbox" class="qnum" name="qnum" id="qnum" value="{{ row.QNUM }}">
+                    </td>   
+                <td class="b1">{{ row.INSERTDATE }}</td>
+                <td class="b2">{{ row.QNAME }}</td>
+                <td class="b3">{{ row.QCONTENT }}</td>
+            </table> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </form>
+    <div id="btnran">
+        <button type="button" class="btn" id="contentsBtn">글내용보기</button>
+        <button type="button" class="btn" id="deletetBtn">글삭제</button>
+    </div>    
+</div>
+</body>
+</html>

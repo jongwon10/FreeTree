@@ -1,0 +1,651 @@
+
+*{margin:0; padding:0; }
+
+#all{
+    width:840px;
+    height:1600px;
+    margin: 0 auto;
+}
+
+#project-insert{
+    width:840px;
+    height:1432px;
+    float:left;
+    margin: 50px auto;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+/* 프로젝트 머리  */
+#head {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    text-align:center;
+    font-size: 1.25em;
+    margin: 20px 0px;
+}
+
+#back {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: 20px 0px;
+    left: 250px;
+    cursor: pointer;
+}
+
+/* 프로젝트 명 */
+#pj-insert-name {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    margin: 10px 20px;
+    padding: 10px 0px;;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.name-i {
+    position: absolute;
+    width: 700px;
+    left: 30px;
+    height:30px;
+    font-size: 1.02em;
+    border: none;
+    outline: none;
+}
+
+.pj-name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 30px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+#pj-insert-name > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 115px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.count {
+    position: absolute;
+    font-size: 1em;
+    color: grey;
+    font-weight: bold;
+    right: 40px;
+    opacity: 0.8;
+}
+
+/* 프로젝트 인서트 중간 부분  */
+
+#pj-insert-all {
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px 0px auto;
+}
+
+#pj-insert-left {
+    width: 420px;
+    height: 350px;
+}
+
+#pj-insert-right {
+    width: 420px;
+    height: 350px;
+
+}
+
+/* 왼쪽 딥 */
+/* 시작 희망일*/
+.pj-insert-cal {
+    height: 40px;
+    width: 325px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pj-insert-date {
+    position: absolute;
+    width: 280px;
+    left: 7px;
+    height:30px;
+    font-size: 1.02em;
+    border: none;
+    outline: none;
+}
+
+.calender {
+    position: absolute;
+    right: 5px;
+    border:none;
+    outline: none;
+}
+
+.calender > img {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}
+
+.calender-name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 7px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.pj-insert-cal > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 165px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/*예상 기간*/
+.pj-insert-when {
+    height: 40px;
+    width: 210px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    top:50px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.when-when {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.when-insert {
+    position: absolute;
+    width: 200px;
+    left: 6px;
+    height:30px;
+    font-size: 1.02em;
+    border: none;
+    outline: none;
+}
+
+.when-name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 7px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.when-when > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 148px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/*프로젝트 예상기간 바*/
+
+.when-bar-div {
+    height: 40px;
+    width: 80px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    left: 224px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.when-bar {
+    height: 38px;
+    width: 78px;
+    font-weight: bold;
+    font-size: 1.02em;
+    border: none;
+    outline: none;
+    opacity: 0.7;
+}
+
+/*근무 형태*/
+.job-po {
+    height: 40px;
+    width: 210px;
+    margin: 10px 20px;
+    border:none;
+    top:95px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-po > .name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 0px;
+}
+
+.job-po > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 65px;
+}
+
+.job-po-button {
+    height: 40px;
+    width: 327px;
+    margin: 10px 20px;
+    top:130px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#job-po-button1, #job-po-button2 {
+    height: 40px;
+    width: 135px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+/* 프로젝트 예산 */
+
+.pj-money-div {
+    height: 40px;
+    width: 325px;
+    margin: 10px 20px;
+    border:none;
+    top:170px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pj-money-div > .name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 0px;
+}
+
+.pj-money-div > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 103px;
+
+}
+
+.pj-money-div > .vat {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    opacity: 0.7;
+    right:0px;
+}
+
+.pj-money-all-div {
+    height: 40px;
+    width: 327px;
+    margin: 10px 20px;
+    border:none;
+    top:203px;
+    left:0px;
+    position:absolute;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pj-money-insert-div {
+    height: 40px;
+    width: 327px;
+    border:none;
+    left:0px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.min-money, .max-money {
+    height: 40px;
+    width: 133px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+}
+
+
+.min-money::placeholder,
+.max-money::placeholder {
+    color: #000000;
+}
+
+.money-unit1, .money-unit2 {
+    height: 40px;
+    width: 40px;
+    padding-bottom: 3px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.money-unit1 {
+    left: 110px;
+    z-index: -5;
+    pointer-events: none;
+}
+
+.money-unit2 {
+    right: -13px;
+    z-index: -5;
+    pointer-events: none;
+}
+
+/*기술*/
+.skill {
+    height: 40px;
+    width: 325px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    right:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-bar {
+    height: 40px;
+    width: 320px;
+    border-radius: 5px;
+    right:3px;
+    border:none;
+    outline: none;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill > .name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 5px;
+    z-index: 5;
+    background-color: white;
+    pointer-events: none;
+}
+
+.skill > .star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 74px;
+    z-index: 5;
+    background-color: white;
+    box-sizing: border-box;
+    width: 90px;
+    pointer-events: none;
+}
+
+.skill-insert {
+    height: 40px;
+    width: 325px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    right:0px;
+    top: 50px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.skill-insert-box {
+    height: 40px;
+    width: 320px;
+    border-radius: 5px;
+    right:3px;
+    border:none;
+    outline: none;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    resize: none;
+}
+
+/* 필요 인력 및 희망연차 */
+
+.pj-people-all {
+    height: 40px;
+    width: 327px;
+    margin: 10px 20px;
+    top:130px;
+    right:0px;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pj-people-div {
+    height: 40px;
+    width: 327px;
+    position:absolute;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.people-count, .like-year {
+    height: 40px;
+    width: 155px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+}
+
+.p-count {
+    position: absolute;
+    font-size: 0.8em;
+    font-weight: bold;
+    left: 140px;
+    z-index:6;
+    pointer-events: none;
+}
+
+.p-year {
+    position: absolute;
+    font-size: 0.8em;
+    font-weight: bold;
+    right: 5px;
+    z-index:6;
+    pointer-events: none;
+}
+
+.pj-people-all > .name1 {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 5px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.pj-people-all > .star1 {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 74px;
+    opacity: 0.7;
+    pointer-events: none;
+
+}
+
+.pj-people-all > .name2 {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 175px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.pj-people-all > .star2 {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 240px;
+    opacity: 0.7;
+    pointer-events: none;
+
+}
+
+/*팀 소개 ~~ 복지 혜택 까지*/
+
+.memo-all-div {
+    width: 100%;
+    height:975px;
+    top: 457px;
+    position: absolute;
+
+}
+
+.team-intro-div, .main-work-div, .support-div, .condition-div, .benefit-div {
+    display:flex;
+    height: 130px;
+    margin: 30px 20px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+
+.team-text, .main-work-text, .support-text, .condition-text, .benefit-text {
+    width: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+    padding: 0px 5px;
+    font-size: 1.2rem;
+}
+
+.all-insert {
+    display:flex;
+    height: 50px;
+    width: 95.23%;
+    margin: 30px 20px;
+    padding: 25px 0px;
+    border: none;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #1ad6a6;
+    font-size: 2rem;
+    color: white;
+}
+
+.team-name, .work-name, .support-name, .condition-name, .benefit-name {
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    left: 30px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.team-star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 80px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.work-star, .support-star, .condition-star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 100px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.benefit-star {
+    position: absolute;
+    font-size: 1em;
+    color: red;
+    font-weight: bold;
+    left: 122px;
+    opacity: 0.7;
+    pointer-events: none;
+}

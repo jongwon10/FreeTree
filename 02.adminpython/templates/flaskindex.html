@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>렌더링된 인덱스 페이지</p>
+        <hr>
+        <!-- Mysql 연동 테스트 -->
+        <ul>
+            {% for row in tpitable %}
+            <li>{{ row.tossporderid }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for row2 in projtable %}
+            <li>{{ row2.PNAME }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

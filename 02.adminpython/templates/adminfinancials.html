@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>관리자페이지 알림</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <!-- Load the Quill library -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/adminfinancials.css">
+       
+
+        <script>
+        $(function() {
+            $.ajax({
+                url: "/side",
+                success: function(data) {
+                    $("#sidebar-load").html(data);
+                }
+            });
+        });
+        </script>
+        <script>
+            $(document).ready(function() {
+
+                /* 검색 폼 제출  */
+                $("#af-searchButton").on("click", function() {
+            
+                    $("#af-searchForm")
+                    .attr("action", "/adminpage")
+                    .submit();
+                });
+                /* 페이징 */
+                $(document).on("click", ".af-pagingother", function () {
+                    var pageNumber = $(this).data("page");
+                    $("#tmppagenum").val(pageNumber);
+
+                    $("#af-pagingForm")
+                    .attr("action", "/adminpage")
+                    .submit();
+                });
+            });
+        </script>
+    </head>
+
+
+
+        <body>
+            <div id="sidebar-load"></div> <!--사이드바 불러오기-->
+            
+            <div id="body">
+                <div class="sangdan">
+                    <h001><span class="greentext">수</span>수료 결제 내역</h001>
+                    <div class="in">
+                        <hr>
+                        <div class="af-searchbox">
+                            <form id="af-searchForm" name="af-searchForm" method="post">
+                                <select id="af-searchFilter" name="af-searchFilter" class="af-searchFilter">
+                                    <option>결제번호</option>
+                                    <option>기업명</option>
+                                    <option>회원ID</option>
+                                    <option>프로젝트명</option>
+                                    <option>결제금액</option>
+                                    <option>결제일시</option>
+                                    <option>ORDERID</option>
+                                </select>
+                                <input type="text" id="af-searchText" name="af-searchText" class="af-searchText" placeholder="검색어를 입력하세요" />
+                                <input type="button" id="af-searchButton" class="insertbtn" value="검색" />
+                            </form>
+                        </div>
+                        <div>총 검색 결과 {{ totalcount }} 건</div>
+                        <div>총 결제 금액 {{ totalmoney}} 원</div>
+                        <hr>
+                        <div class="af-databox">
+                            <table class="af-datatable">
+                                <tr class="af-datathtext">
+                                    <th>결제번호</th>
+                                    <th>기업명</th>
+                                    <th>회원ID</th>
+                                    <th>프로젝트명</th>
+                                    <th>결제금액</th>
+                                    <th>결제일시</th>
+                                    <th>ORDERID</th>
+                                </tr>
+                            <!--                검색 결과 출력 시작                     -->
+                                {% for row in data %}
+                                <tr>        
+                                    <td class="af-datatdtext">{{ row.tosspnum }}</td>         <!-- 결제번호 -->
+                                    <td class="af-datatdtext2">{{ row.CNAME }}</td>            <!-- 기업명 -->
+                                    <td class="af-datatdtext">{{ row.CEMAIL }}</td>           <!-- 회원ID -->
+                                    <td class="af-datatdtext2">{{ row.PNAME }}</td>            <!-- 프로젝트명 -->
+                                    <td class="af-datatdtext">{{ row.tossptotalamount }}</td> <!-- 결제금액 -->
+                                    <td class="af-datatdtext2">{{ row.tosspapprovedat }}</td>  <!-- 결제일시 -->
+                                    <td class="af-datatdtext">{{ row.tossporderid }}</td>     <!-- orderid -->
+                                </tr>
+                                {% endfor %}
+                            <!--                검색 결과 출력 종료                     -->
+                            </table>
+                        </div>
+                                    <!-- 페이징 처리-->
+                        <form id="af-pagingForm" name="af-pagingForm" method="post">
+                            <div class="af-pagingbox">
+                                {% for btn in buttonlist %}
+                                    <span class="af-pagingbtn">
+                                    {% if nowpage == btn %}
+                                        <span id="af-pagingnow" class="af-pagingnow" data-page="{{btn}}">{{btn}}</span>
+                                    {% else %}
+                                        <span id="af-pagingother" class="af-pagingother" data-page="{{btn}}">{{btn}}</span>
+                                    {% endif %}
+                                    </span>
+                                {% endfor %}
+                            </div>              <!-- 페이징시 이전 검색기록 저장 -->
+                            <input type="hidden" id="tmpkeyword" name="tmpkeyword" value="{{searchText}}"><br/>
+                            <input type="hidden" id="tmpfilter" name="tmpfilter" value="{{searchFilter}}"><br/>
+                            <input type="hidden" id="tmppagenum" name="tmppagenum" value="1"><br/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </body>
+</html>

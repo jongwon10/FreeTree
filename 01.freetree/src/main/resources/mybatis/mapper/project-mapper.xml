@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.ProjectMapper">
+
+    <insert id="getProjectInsert" parameterType="wearethe.freetree.project.vo.ProjectVO">
+        <selectKey keyProperty="pnum" resultType="java.lang.String" order="BEFORE">
+            SELECT CONCAT('P', DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(PNUM), -4), 0) + 1, 4, '0')) AS pnum
+            FROM PROJECT
+            WHERE PNUM LIKE CONCAT('P', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+        </selectKey>
+
+        INSERT INTO PROJECT
+        (PNUM, PNAME, PSTARTDATE, PENDDATE,
+        PLIMIT, PINTRODUCTION, PWORK,
+        PCONDITION, PBENEFIT, PANNUAL,
+        PDEMAND, CNUM, PPAYMIN,
+        PPAYMAX, PRESIDE, PSKILL,
+        CHP, PDELETE, PINSTARTDATE, PSTATUS, PINSTATUS, PINYES)
+        VALUES (#{pnum}, #{pname},
+        #{pstartdate}, #{penddate},
+        #{plimit}, #{pintroduction}, #{pwork},
+        #{pcondition}, #{pbenefit}, #{pannual},
+        #{pdemand}, #{cnum}, #{ppaymin},
+        #{ppaymax}, #{preside}, #{pskill},
+        #{chp}, 'Y', DATE(NOW()), #{pstatus}, #{pinstatus}, #{pinyes}
+        )
+    </insert>
+
+
+    <select id="projectMainSelectAll" parameterType="wearethe.freetree.project.vo.ProjectVO" resultType="wearethe.freetree.project.vo.ProjectVO">
+
+        SELECT * FROM project
+        WHERE PDELETE = 'Y'
+        <if test="search != null and search !=''">
+            <![CDATA[AND PNAME LIKE CONCAT('%', #{search}, '%')]]>
+        </if>
+        ORDER BY PNUM DESC
+        LIMIT 5 OFFSET #{offset};
+
+    </select>
+
+    <select id="projectInfo" parameterType="wearethe.freetree.project.vo.ProjectVO" resultType="wearethe.freetree.project.vo.ProjectVO">
+
+        SELECT *
+        FROM company
+                 JOIN project ON company.CNUM = project.CNUM
+        WHERE company.CNUM = #{cnum}
+          AND project.PNUM = #{pnum}
+          AND project.PDELETE = 'Y';
+
+    </select>
+
+
+    <select id="totalResult" parameterType="wearethe.freetree.project.vo.ProjectVO" resultType="java.lang.Integer">
+
+        SELECT COUNT(*) AS totalresult
+        FROM project
+        WHERE PDELETE = 'Y'
+        <if test="search != null and search != ''">
+            AND PNAME LIKE CONCAT('%', #{search}, '%')
+        </if>;
+
+    </select>
+
+    <select id="projectinsertgo" parameterType="wearethe.freetree.company.vo.CompanyVO" resultType="wearethe.freetree.company.vo.CompanyVO">
+
+        SELECT *
+        FROM company
+        WHERE CNUM = #{cnum}
+
+
+    </select>
+
+
+    <!-- 지원 -->
+    <!--프로젝트 지원하기로 이동-->
+    <select id="projectInfoSelectAll" parameterType="wearethe.freetree.project.vo.ProjectSupportVO" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT resume.RNUM,
+               resume.RNAME,
+               resume.RENGNAME,
+               resume.RBIRTH,
+               resume.RHP,
+               resume.RADDR,
+               resume.RPERIOD,
+               resume.RSCHNAME,
+               resume.RMAJOR,
+               resume.RTENURE,
+               resume.RRESPONS,
+               resume.RWORKNAME,
+               resume.RACQUI,
+               resume.RLICENSE,
+               resume.RPUBLISHER,
+               member_mypage.MPINFO,
+               member_mypage.MPFILEUP
+        FROM resume
+                 INNER JOIN member_mypage ON resume.MNUM = member_mypage.MNUM
+        where resume.mnum = #{mnum}
+    </select>
+
+
+
+    <!--프로젝트 지원하기 등록-->
+    <insert id="projectSupportInsert" parameterType="wearethe.freetree.project.vo.ProjectSupportVO">
+        <selectKey keyProperty="panum" resultType="java.lang.String" order="BEFORE">
+            SELECT CONCAT('PA', DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(PANUM), -4), 0) + 1, 4, '0')) AS panum
+            FROM PROJECTAPPLICANT
+            WHERE PANUM LIKE CONCAT('PA', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+        </selectKey>
+
+        INSERT INTO  PROJECTAPPLICANT(
+        PANUM,
+        PAINTRO,
+        PASTARTDATE,
+        PATYPEWORK,
+        PAJOB,
+        PACARRER,
+        PAMINPAY,
+        PAMAXPAY,
+        MNUM,
+        PNUM,
+        RNUM,
+        DELETEYN,
+        PINYES,
+        PINDATE
+        )
+        VALUES (
+        #{panum},
+        #{paintro},
+        #{pastartdate},
+        #{patypework},
+        #{pajob},
+        #{pacarrer},
+        #{paminpay},
+        #{pamaxpay},
+        #{mnum},
+        #{pnum},
+        #{rnum},
+        'Y',
+        '1',
+        #{pindate}
+        );
+    </insert>
+
+
+    <!--프로젝트 신청자목록-->
+    <select id="projectSupportSelectAll" parameterType="wearethe.freetree.project.vo.ProjectSupportVO" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT
+            resume.RNAME,
+            resume.RENGNAME,
+            resume.MNUM,
+            projectapplicant.PINYES,
+            projectapplicant.PANUM,
+            projectapplicant.PAINTRO,
+            projectapplicant.PASTARTDATE,
+            projectapplicant.PATYPEWORK,
+            projectapplicant.PAJOB,
+            projectapplicant.PACARRER,
+            projectapplicant.PAMINPAY,
+            projectapplicant.PAMAXPAY
+        FROM projectapplicant
+                 INNER JOIN resume ON projectapplicant.RNUM = resume.RNUM
+        WHERE projectapplicant.pnum = #{pnum}
+          AND projectapplicant.deleteyn = 'Y'
+          AND (projectapplicant.PINYES = '1' OR projectapplicant.PINYES = '2');
+    </select>
+
+
+    <select id="projectSupportPartSelectAll"  parameterType="wearethe.freetree.project.vo.ProjectSupportVO" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT
+            resume.RNAME,
+            resume.RENGNAME,
+            resume.MNUM,
+            projectapplicant.PINYES,
+            projectapplicant.PANUM,
+            projectapplicant.PAINTRO,
+            projectapplicant.PASTARTDATE,
+            projectapplicant.PATYPEWORK,
+            projectapplicant.PAJOB,
+            projectapplicant.PACARRER,
+            projectapplicant.PAMINPAY,
+            projectapplicant.PAMAXPAY
+        FROM projectapplicant
+                 INNER JOIN resume ON projectapplicant.RNUM = resume.RNUM
+        WHERE projectapplicant.pnum = #{pnum}
+          AND projectapplicant.deleteyn = 'Y'
+          AND projectapplicant.PINYES = '3';
+    </select>
+
+
+
+    <select id="projectSupportSelect" parameterType="wearethe.freetree.project.vo.ProjectSupportVO" resultType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT
+            projectapplicant.PANUM,
+            projectapplicant.PAINTRO,
+            projectapplicant.PASTARTDATE,
+            projectapplicant.PATYPEWORK,
+            projectapplicant.PAJOB,
+            projectapplicant.PACARRER,
+            projectapplicant.PAMINPAY,
+            projectapplicant.PAMAXPAY,
+            member_mypage.MPINFO,
+            member_mypage.MPFILEUP,
+            resume.RNUM,
+            resume.MNUM,
+            resume.RNAME,
+            resume.RENGNAME,
+            resume.RBIRTH,
+            resume.RHP,
+            resume.RADDR,
+            resume.RPERIOD,
+            resume.RSCHNAME,
+            resume.RMAJOR,
+            resume.RTENURE,
+            resume.RRESPONS,
+            resume.RWORKNAME,
+            resume.RACQUI,
+            resume.RLICENSE,
+            resume.RPUBLISHER
+
+        FROM resume
+                 JOIN projectapplicant ON resume.MNUM = projectapplicant.MNUM
+                 JOIN member_mypage    ON resume.MNUM = member_mypage.MNUM
+        WHERE resume.MNUM = #{mnum};
+
+    </select>
+
+
+    <delete id="projectManageDelete" parameterType="wearethe.freetree.project.vo.ProjectSupportVO">
+        DELETE FROM projectapplicant
+        WHERE DELETEYN = 'Y'
+          AND panum = #{panum}
+    </delete>
+
+
+    <select id="projectSupportcnt" parameterType="wearethe.freetree.project.vo.ProjectSupportVO">
+        SELECT COUNT(*) FROM projectapplicant
+        WHERE MNUM = #{mnum}
+        AND   PNUM = #{pnum}
+        AND   DELETEYN = 'Y'
+    </select>
+
+
+</mapper>

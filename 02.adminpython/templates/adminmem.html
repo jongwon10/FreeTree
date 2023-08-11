@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Load the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/adminmem.css">
+</head>
+<body>
+   <div id="sidebar-load"></div><!--네비바-->
+   <form id="rodlsboard">
+       <div id="memlist">
+           <div id="header">
+               <h3><span>개</span>인 회원</h3>
+           </div>
+           <table id="tt1">
+               <th class="nv1">가입날짜</th>
+               <th class="nv2">이름</th>
+               <th class="nv3">닉네임</th>
+               <th class="nv4">이메일 주소</th>
+           </table>
+           <table id="list01">
+            {% for member in data['members']%}
+               <tr>
+                   <td class="td-wr0">{{ member.MREGISTER }}</td>
+                   <td class="td-wr1">{{ member.MNAME }}</td>
+                   <td class="td-wr2">{{ member.MNICK }}</td>
+                   <td class="td-wr3">{{ member.MEMAIL }}</td>
+               </tr>
+            {% endfor %}
+           </table>
+       </div>
+
+       <div id="memlist">
+           <div id="header1">
+               <h3><span>기</span>업 회원</h3>
+           </div>
+           <table id="tt1">
+               <th class="nv0">가입 여부</th>
+               <th class="nv1">가입 날짜</th>
+               <th class="nv2">기업 명</th>
+               <th class="nv3">이메일 주소</th>
+               <th class="nv4">기업 연락처</th>
+               <th class="nv5">인사담당자이름</th>
+           </table>
+           <table id="list01">
+                {% for company in data['company'] %}
+                <tr>
+                    <td class="lvbtn">{% if company.CLEAVE == 'N' %}
+                        <button class="updateBtn" data-cnum="{{ company.CNUM }}" data-cleave="{{ company.CLEAVE }}">승인하기</button>
+                        {% endif %}</td>
+                    <td class="lv">{{ company.CLEAVE }} </td>
+                    <td class="td-wr0">{{ company.CREGISTER }}</td>
+                    <td class="td-wr1">{{ company.CNAME }}</td>
+                    <td class="td-wr2">{{ company.CEMAIL }}</td>
+                    <td class="td-wr3">{{ company.CHP }}</td>
+                    <td class="td-wr3">{{ company.CPERSONNEL }}</td>
+                </tr>
+                    {% endfor %}
+           </table>
+           <div id="bpbtn">
+                {% if data['members'] or data['company'] %}
+                {% if data['page'] > 1 %}
+                <a id="backbtn" href="/adminmem?page={{ data['page'] - 1 }}">　이전　</a>
+                {% endif %}
+                {% if data['page'] < data['last_page'] %}
+                <a id="passbtn" href="/adminmem?page={{ data['page'] + 1 }}">　다음　</a>
+                {% endif %}
+                {% endif %}
+           </div>
+       </div>
+   </form>
+
+   <script>
+    $(function () {
+        $.ajax({
+            url: "/side",
+            success: function (data) {
+                $("#sidebar-load").html(data);
+            }
+        });
+
+        $(document).on("click", ".updateBtn", function () {
+            var cleave = $(this).data("cleave");
+            var cnum = $(this).data("cnum");
+            console.log("Button clicked!"); // 버튼 클릭 이벤트 확인을 위한 로그
+
+            console.log("cnum:", cnum);
+            console.log("cleave:", cleave);
+
+            cleave = cleave === "N" ? "Y" : "N";
+
+            $.ajax({
+                type: "POST",
+                url: "/cleaveUpdate",
+                data: {  // 데이터를 JSON 형식으로 전송
+                    "cnum": cnum,
+                    "cleave": cleave
+                },
+                success: function () {
+                    console.log("Update request succeeded!"); // 요청 성공 확인을 위한 로그
+                    location.reload();
+                    alert("가입을 승인했습니다.");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Error updating CLEAVE:", errorThrown);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="/css/question/questionSelectAll.css" type="text/css" rel="stylesheet">
+    <link href="/css/reset.css" type="text/css" rel="stylesheet">
+    <script>
+        $(function() {
+            $.ajax({
+                url: "nav/sidenav.html", // 헤더를 반환하는 엔드포인트
+                success: function (data) {
+                    $("#sidebar-load").html(data);
+                }
+            });
+
+            alert("자바스크립트 블럭 진입 >>> : ");
+
+            $(document).ready(function () {
+                alert("jQuery ready() 함수 블럭 진입 >>> : ");
+
+                // chkAll 체크박스 체크 확인하기
+                $(document).on("click", "#chkAll", function () {
+
+                    if ($(this).prop('checked')) {
+                        $('.qnum').prop('checked', false);
+                    }
+                });
+                // qnum 체크박스 체크 확인하기
+                $(document).on("click", "#qnum", function () {
+
+                    if ($(this).prop('checked')) {
+                        $('.qnum').prop('checked', false);
+                        $(this).prop('checked', true);
+                    }
+                });
+
+                //  I
+                $(document).on("click", "#insertBtn", function () {
+                    location.href = "questionForm";
+                });
+
+                // SALL
+                $(document).on("click", "#selectAllBtn", function () {
+                    $("#questionList").attr({"method": "GET", "action": "questionSelectAll"}).submit();
+                });
+
+                //  S
+                $(document).on("click", "#contentsBtn", function () {
+                    if ($('.qnum:checked').length == 0) {
+                        alert("글번호 하나를 선택하세요!!");
+                        return;
+                    }
+                    $("#questionList").attr({"method": "GET", "action": "adqSelect"}).submit();
+                });
+
+                //  D
+                $(document).on("click", "#deletetBtn", function () {
+                    if ($('.qnum:checked').length == 0) {
+                        alert("삭제할 글번호 하나를 선택하세요!!");
+                        return;
+                    }
+                    $("#questionList").attr({"method": "GET", "action": "adqDelete"}).submit();
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div id="sidebar-load"></div>
+<%
+
+    Object obj = request.getAttribute("listAll");
+    List<AdqVO> list = (List<AdqVO>)obj;
+
+    int nCnt = list.size();
+    String nCntS = " 전체 Q&A 수 : " + nCnt + " 건";
+
+
+
+%>
+
+<div class="container">
+    <form name="questionList" id="questionList">
+        <table class="qnatable">
+            <div><h3><span>문</span>의사항</h3></div>
+            <thead>
+            <tr>
+                <td colspan="7">
+                    <h3>Q&A 게시판</h3>
+                    <h3><%= nCntS %></h3><hr>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <input type="checkbox" class="chkAll" name="chkAll" id="chkAll">
+                </th>
+                <th>작성일</th>
+                <th>작성자</th>
+                <th>제목</th>
+            </tr>
+            </thead>
+            <tbody> <!-- <tbody> 요소를 루프 바깥으로 이동 -->
+
+            <% if (list != null) {
+                for (int i = 0; i < list.size(); i++) {
+                    AdqVO adqvo = list.get(i);
+                    // ... 반복문 내부 코드
+
+            %>
+            <tr>
+                <td>
+                    <input type="checkbox" id="qnum" name="qnum" class="qnum" value=<%= adqvo.getQnum() %> >
+                </td>
+                <td><%= adqvo.getUpdatedate() %> </td>
+                <td><%= adqvo.getFnum() %> </td>
+                <td><%= adqvo.getQname() %> </td>
+            </tr>
+            <%
+                    }//end of for
+                } %>
+            </tbody>
+            <tr>
+                <td colspan="7">
+                    <button type="button" class="btn" id="insertBtn">글쓰기</button>
+                    <button type="button" class="btn" id="contentsBtn">글내용보기</button>
+                    <button type="button" class="btn" id="deletetBtn">글삭제</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer id="footer"></footer>
+</body>
+</html>

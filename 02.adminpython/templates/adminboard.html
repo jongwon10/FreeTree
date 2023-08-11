@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/adminboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+        $(function() {
+           $.ajax({
+              url: "/side", // 헤더를 반환하는 엔드포인트
+              success: function(data) {
+                 $("#sidebar-load").html(data);
+              }
+           });
+
+           // chkAll 체크박스 체크 확인하기
+           $(document).on("click", "#chkAll", function () {
+
+               if ($(this).prop('checked')) {
+                  $('.pnum').prop('checked', false);
+                  
+               }
+               });
+               // cnum 체크박스 체크 확인하기
+               $(document).on("click", "#pnum", function () {
+                 
+               if ($(this).prop('checked')) {
+                  $('.pnum').prop('checked', false);
+                  $(this).prop('checked', true);
+               }
+               });
+
+          //  D
+          $(document).on("click", "#deletebtn", function () {
+                    if ($('.pnum:checked').length == 0) {
+                        alert("삭제할 글번호 하나를 선택하세요!!");
+                        return;
+                    }
+                    $("#sss").attr({"method": "POST", "action": "adminboardDelete"}).submit();
+                });
+        
+        });
+    });
+
+        </script> 
+
+</head>
+<body>
+   
+    <div id="sidebar-load"></div>
+<div class="www">
+   
+   <form id="sss">
+      <div id="container1">
+      <div id="header1">
+         <h3><span>프</span>로젝트 관리</h3>
+         <div>
+            <input type="text" class="te1" placeholder="이메일">
+            <input type="button" class="btn1" value="검색">
+         </div>
+         
+      </div>
+      <div id="couple">
+         <div id="title01"></div>
+            <table id="list1">
+               <tr class="tr01">
+                  <th class="td-wrapper4"><hr class="hr4"></th>
+                  <th class="td-wrapper1" class="tdg">등록일</th>
+                  <th class="td-wrapper2" class="tdn">기업명</th>
+                  <th class="td-wrapper3" class="tdni">프로젝트명</th>
+               </tr>
+            <tbody>
+            <tr>
+         </div>  
+         
+            {% for row in mem_list %}
+            <td class="ctd">
+               <input type="checkbox" class="pnum" name="pnum" id="pnum" value="{{ row.PNUM }}">
+               
+           </td>  
+               <td class="td-wr4">{{ row.PSTARTDATE }}</td>
+               <td class="td-wr5">{{ row.CNAME }}</td>
+               <td class="td-wr6">{{ row.PNAME }}</td>
+            <div id="btnlist">
+               <td class="b1"><input type="button" class="button01" id="deletebtn" value="삭제"/> 
+               <td class="b2"><input type="button" class="button02" id="#" value="메세지 전송"/>  
+               <td class="b3"><input type="button" class="button03" id="#" value="상세페이지"/>
+            </div>          
+      </div>
+      </div>
+   
+         </tr>
+         {% endfor %}
+       
+      </tbody>
+   
+         </table>
+      </form> 
+</div>
+
+</body>
+</html>
