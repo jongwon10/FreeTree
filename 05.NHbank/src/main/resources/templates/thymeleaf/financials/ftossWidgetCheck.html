@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>결제 성공</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<section>
+    <h1 th:if="${isSuccess}">결제 성공</h1>
+    <p th:if="${isSuccess}">결과 데이터 : [[${jsonObject.toJSONString()}]]</p>
+    <p th:if="${isSuccess}">orderName : [[${jsonObject.get('orderName')}]]</p>
+    <p th:if="${isSuccess}">method : [[${jsonObject.get('method')}]]</p>
+<!--/*
+    <p th:if="${isSuccess}">
+        <span th:if="${jsonObject.get('method') == '카드'}">[[${((JSONObject)jsonObject.get('card')).get('number')}]]</span>
+        <span th:if="${jsonObject.get('method') == '가상계좌'}">[[${((JSONObject)jsonObject.get('virtualAccount')).get('accountNumber')}]]</span>
+        <span th:if="${jsonObject.get('method') == '계좌이체'}">[[${((JSONObject)jsonObject.get('transfer')).get('bank')}]]</span>
+        <span th:if="${jsonObject.get('method') == '휴대폰'}">[[${((JSONObject)jsonObject.get('mobilePhone')).get('customerMobilePhone')}]]</span>
+    </p>
+*/-->
+    <h1 th:unless="${isSuccess}">결제 실패</h1>
+    <p th:unless="${isSuccess}">[[${jsonObject.get('message')}]]</p>
+    <span th:unless="${isSuccess}">에러코드: [[${jsonObject.get('code')}]]</span>
+</section>
+<script th:inline="javascript">
+
+    /* 페이지 로드후 ajax 전송 */
+    window.onload = function() {
+
+        if ([[${isSuccess}]]) {
+
+            $.ajax({
+                url: "/ftossinsert",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify([[${jsonObject}]]),
+                success: function(response) {
+
+                    alert("결제성공");
+                    confirmCloseWindow();
+
+                },
+                error: function(xhr, status, error) {
+
+                    alert("fail");
+                }
+            });
+        }else{
+
+        }
+    }
+
+    function confirmCloseWindow() {
+        // 창을 닫을 때 확인 메시지 표시
+        $(window).on('beforeunload', function() {
+            return '정말로 창을 닫으시겠습니까?';
+        });
+    }
+</script>
+</body>
+</html>

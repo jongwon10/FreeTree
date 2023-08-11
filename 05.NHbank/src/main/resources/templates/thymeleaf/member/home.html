@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+            $("#popup").click(function() {
+                window.open("/pay", "결제창", "width=756,height=756");
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <p>수수료 계산 페이지</p>
+    <p>내역 : xxx</p>
+    <p>금액 : xxx</p>
+    <button id="popup">결제하기</button>
+    <button id="cancel">취소하기</button>
+</body>
+</html>

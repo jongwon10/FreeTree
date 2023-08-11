@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wearethe.freetree.mybatis.mapper.NhBankMapper">
+
+
+    <!--      INSERT INTO nhdeposit (
+              nhnum,
+              vrans,
+              mnrcdt,
+              mnrcAmt,
+              pnum,
+              cemail
+
+          )
+
+          VALUES (
+              #{nhnum},
+              #{vrans},
+              #{mnrcdt},
+              #{mnrcAmt},
+              (SELECT pnum FROM project ORDER BY pnum DESC LIMIT 1),
+              (SELECT cemail
+                  FROM company
+                  WHERE cnum = (SELECT cnum FROM project ORDER BY pnum DESC LIMIT 1)))
+      </insert>-->
+  <insert id="depositInsert" parameterType="wearethe.freetree.nhbank.vo.NhBankVO">
+
+      INSERT INTO nhdeposit (
+      nhnum,
+      vrans,
+      mnrcdt,
+      mnrcAmt,
+      pnum,
+      cemail
+      )
+
+      VALUES (
+      #{nhnum},
+      #{vrans},
+      #{mnrcdt},
+      #{mnrcAmt},
+      'P202308040001',
+      'rkskekfk123@naver.com'
+       )
+  </insert>
+
+
+    <insert id="accountInsert" parameterType="wearethe.freetree.nhbank.vo.NhBankVO">
+
+        INSERT INTO nhaccount (
+            nhnum1,
+            rgno,
+            tram
+        )
+
+        VALUES (
+                   #{nhnum1},
+                   #{rgno},
+                   #{tram})
+    </insert>
+    <select id="nhDBCount1" resultType="wearethe.freetree.nhbank.vo.NhBankVO">
+
+        SELECT count(nhnum1)+1 as nhnum1
+        FROM nhaccount;
+    </select>
+
+    <select id="nhDBCount" resultType="wearethe.freetree.nhbank.vo.NhBankVO">
+
+        SELECT count(nhnum)+1 as nhnum
+        FROM nhdeposit;
+    </select>
+
+</mapper>

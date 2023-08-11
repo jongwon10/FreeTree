@@ -1,0 +1,46 @@
+.container{
+    margin: 200px 200px;
+}
+body{
+    background-color: white;
+}
+
+.btn {
+    font-size: 17px;
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #20D5A4;
+    color: white;
+    float: right;
+    border-radius: 5px;
+    border:0px;
+    cursor: pointer; /* 커서 모양을 손가락 모양으로 변경 */
+    transition: background-color 0.3s; /* 부드러운 변화를 위해 transition 효과 추가 */
+}
+
+.btn:hover{
+    background-color: #14a686; /* hover 시 배경색 변경 */
+}
+
+.seltable{
+    background-color: white;
+    padding: 50px;
+    text-align: center;
+    margin: 100px auto;
+    border: solid 3px #20D5A4;
+    border-radius: 20px;
+}
+
+td{
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+}
+th{
+    border: solid 1px #20D5A4;
+    border-radius: 20px;
+}
+
+textarea {
+    font-size: 20px;
+}

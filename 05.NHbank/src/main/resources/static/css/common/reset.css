@@ -1,0 +1,29 @@
+/* 전체 초기설정 */
+*{margin:0; padding:0;}
+
+img{
+	display:block;
+	border:0;
+}
+
+ul, li{
+	list-style:none;
+}
+
+a{
+	display:block;
+	border:0;
+	color:black;
+}
+
+/* 입력 상자(input box) 스타일을 초기화 */
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  padding: initial;
+  border: initial;
+  /*color: initial;*/
+  font-family: initial;
+  /*font-size: initial;*/
+  cursor: initial;
+}

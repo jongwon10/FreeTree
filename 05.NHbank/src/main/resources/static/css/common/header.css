@@ -1,0 +1,266 @@
+/*
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  padding: initial;
+  border: initial;
+  background-color: initial;
+  color: initial;
+  font-family: initial;
+  font-size: initial;
+}
+*/
+
+
+
+/* 헤더부분 */
+header{
+    width:100%;
+    height:90px;
+    /*background-color:rgb(189, 66, 66);*/
+    /* position:fixed; */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+
+
+#sticky{
+    width: auto;
+}
+
+/* top_header 부분 */
+#top_header{
+    width:100%;
+    height:45px;
+    background-color:white;
+    border-bottom:1px solid #e9e9eb;
+}
+
+#search_wrap{
+    width:680px;
+    height:100%;
+    /* background-color:purple;*/
+    margin:0 auto;
+}
+
+#search_wrap input{
+    background: transparent;
+}
+
+#search_bar{
+    width:540px;
+    height:45px;
+    /*background-color:rgb(212, 212, 166);*/
+    outline: none;
+    border: 2px solid #1ad6a6;
+    box-sizing:border-box;
+    border-radius: 7px;
+    float:left;
+}
+
+.bar{
+    width:100px;
+    height:45px;
+    font-size:15px;
+    border-radius: 7px;
+    border:none;
+    background: none;
+    box-sizing:border-box;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+#search_bar input{
+    width: 380px;
+    height:25px;
+    border: none;
+    background: none;
+    outline: none;
+    font-size:15px;
+}
+
+.img-Search img{
+    width:30px;
+    height:30px;
+    /*background-color:blue; */
+    float:right;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+#login_warp{
+    width:120px;
+    height:45px;
+    padding-top: 11.25px;
+    box-sizing: border-box;
+    /*background-color:#0080ff;*/
+    float:right;
+}
+
+.account:hover{
+    opacity: 50%;
+    cursor: pointer;
+}
+
+/* top_header end*/
+
+
+/* bottom_header 부분 */
+#bottom_header{
+    width:100%;
+    height:45px;
+    background-color: white;
+    border-bottom:1px solid #e9e9eb;
+}
+
+#logo_wrap{
+    width:900px;
+    height:45px;
+    /* background-color:rgb(185, 31, 54);*/
+    margin: 0 auto;
+}
+
+#main_logo{
+    float:left;
+    width:110px;
+    height:45px;
+    /*background-color:rgb(92, 92, 161);*/
+    margin-right:40px;
+}
+
+#main_logo img{
+    width:110px;
+    height:30px;
+    box-sizing:border-box;
+    margin-top:7.5px;
+}
+
+#nav_wrap{
+    width:500px;
+    height:45px;
+    background-color:lightblue;
+    float:left;
+    margin-right: 30px;
+}
+
+.menu{
+    width:125px;
+    height:100%;
+    background-color:white;
+    border:none;
+    float:left;
+    font-size:17px;
+}
+
+.menu:hover{
+    background-color:#20D5A4;
+    cursor: pointer;
+    color: white;
+}
+
+.hamburger{
+    width:30px;
+    height:45px;
+    /*background-color:blue;*/
+    float:left;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.hamburger span {
+    position: absolute;
+    width: 100%;
+    background-color: black;
+    height:2.5px;
+    border-radius:5px;
+    left:0;
+    margin-top: 7.5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2),
+.hamburger span:nth-child(3){
+    top: 10px;
+}
+
+.hamburger span:nth-child(4) {
+    top: 20px;
+}
+
+.hamburger.active span:nth-child(1),
+.hamburger.active span:nth-child(4){
+    opacity: 0;
+}
+
+.hamburger.active  span:nth-child(2){
+    transform: rotate(45deg);
+}
+
+.hamburger.active  span:nth-child(3){
+    transform: rotate(-45deg);
+}
+
+
+/* bottom_header end */
+
+
+/* 헤더부분 end */
+
+#slide_menu {
+    width:100%;
+    height:0;
+    background-color:#929292;
+    float:left;
+    overflow: hidden;
+    position:fixed;
+    transition: height 0.5s ease;
+    z-index:1000;
+}
+
+#all_menu {
+    color:#fff;
+    /*background-color:blue;*/
+    height: 200px;
+    width:1100px;
+    margin:0 auto;
+}
+
+
+.menu_btn{
+    width:275px;
+    height:100%;
+    /*background-color:black;*/
+    float:left;
+    box-sizing:border-box;
+    text-align:center;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.menu_btn li{
+    height:40px;
+    width:100%;
+    /* background-color:red; */
+    line-height:40px;
+}
+
+
+.menu_btn input{
+    border:none;
+    width:100px;
+    cursor:pointer;
+    background:none;
+    color:white;
+}

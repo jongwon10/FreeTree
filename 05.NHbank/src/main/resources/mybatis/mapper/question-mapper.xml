@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.QuestionMapper">
+
+    <insert id="questionInsert" parameterType="wearethe.freetree.question.vo.QuestionVO" >
+
+        <selectKey keyProperty="qnum" resultType="java.lang.String" order="BEFORE">
+            SELECT CONCAT('Q', DATE_FORMAT(NOW(), '%Y%m%d'), LPAD(COALESCE(SUBSTRING(MAX(QNUM),-4), 0) + 1, 4, '0'))AS qnum
+            FROM QUESTION
+            WHERE QNUM LIKE CONCAT('Q', DATE_FORMAT(NOW(), '%Y%m%d'), '%')
+        </selectKey>
+
+        INSERT INTO QUESTION (QNUM, FNUM, QNAME, QCONTENT, QFILE,QANSWER,
+                              DELETEYN, INSERTDATE, UPDATEDATE)
+        VALUES( #{qnum},
+                #{fnum},
+                #{qname},
+                #{qcontent},
+                #{qfile},
+                #{qanswer},
+                'Y',
+                NOW(),
+                NOW())
+    </insert>
+
+    <select id="questionSelectAll" parameterType="wearethe.freetree.question.vo.QuestionVO" resultType="wearethe.freetree.question.vo.QuestionVO">
+        SELECT
+            QNUM,
+            FNUM,
+            QNAME,
+            QCONTENT,
+            QFILE,
+            QANSWER,
+            DELETEYN,
+            DATE_FORMAT(INSERTDATE, '%Y-%m-%d') AS INSERTDATE,
+            DATE_FORMAT(UPDATEDATE, '%Y-%m-%d') AS UPDATEDATE
+        FROM QUESTION
+        WHERE DELETEYN = 'Y'
+        ORDER BY QNUM DESC;
+    </select>
+
+    <select id="questionSelect" parameterType="wearethe.freetree.question.vo.QuestionVO" resultType="wearethe.freetree.question.vo.QuestionVO">
+        SELECT 	  QNUM      QNUM
+                 ,FNUM 	    FNUM
+                 ,QNAME 	QNAME
+                 ,QCONTENT  QCONTENT
+                 ,QFILE 	QFILE
+                 ,QANSWER   QANSWER
+                 ,DELETEYN 	DELETEYN
+                 ,DATE_FORMAT(INSERTDATE, '%Y-%m-%d') AS INSERTDATE
+                 ,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d') AS UPDATEDATE
+        FROM 	QUESTION
+        WHERE 	QNUM = #{qnum}
+        AND     DELETEYN = 'Y'
+    </select>
+
+    <update id="questionDelete" parameterType="wearethe.freetree.question.vo.QuestionVO">
+        UPDATE  QUESTION
+        SET	    DELETEYN 	= 'N'
+               ,UPDATEDATE  =  NOW()
+        WHERE  	DELETEYN    = 'Y'
+          AND   QNUM = #{qnum}
+    </update>
+
+</mapper>

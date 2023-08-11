@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wearethe.freetree.mybatis.mapper.FinancialsMapper">
+
+    <insert id="tosspayapiInsert" parameterType="wearethe.freetree.financials.vo.FinancialsVO">
+
+        INSERT INTO tosspayapi (
+                                    tosspnum,
+                                    tossporderid,
+                                    tosspordername,
+                                    tossptotalamount,
+                                    tosspstatus,
+                                    tosspapprovedat,
+                                    tossppaymentkey,
+                                    tosspjson
+        )
+        VALUES (
+                   #{tosspnum},
+                   #{orderId},
+                   #{orderName},
+                   #{totalAmount},
+                   #{status},
+                   #{approvedAt},
+                   #{paymentKey},
+                   #{json}
+               )
+    </insert>
+
+    <select id="tosspayapiDBCount" resultType="wearethe.freetree.financials.vo.FinancialsVO">
+
+        SELECT count(tosspnum)+1 as tosspnum
+        FROM tosspayapi;
+    </select>
+
+</mapper>
