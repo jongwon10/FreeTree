@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>결제 성공</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .pmbtn {
+            background-color: #1DB088;
+            color: #ffffff;
+            margin-left: 30px;
+            width: 150px;
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        h1,p{
+            margin-left: 30px;
+        }
+        .greentext{
+            color:#1DB088;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <!--/* 결제내역 확인 로그 영역__ 필요시 주석 해제 //////////////////////////////////
+    <h1 th:if="${isSuccess}">결제 성공</h1>
+
+    <p> 기업번호 : <input type="text" id="cnum" th:value="${cnum}" /> </p>
+    <p th:if="${isSuccess}">결과 데이터 : [[${jsonObject.toJSONString()}]]</p>
+    <p th:if="${isSuccess}">orderName : [[${jsonObject.get('orderName')}]]</p>
+    <p th:if="${isSuccess}">method : [[${jsonObject.get('method')}]]</p>  */-->
+<!--/*
+    <p th:if="${isSuccess}">
+        <span th:if="${jsonObject.get('method') == '카드'}">[[${((JSONObject)jsonObject.get('card')).get('number')}]]</span>
+        <span th:if="${jsonObject.get('method') == '가상계좌'}">[[${((JSONObject)jsonObject.get('virtualAccount')).get('accountNumber')}]]</span>
+        <span th:if="${jsonObject.get('method') == '계좌이체'}">[[${((JSONObject)jsonObject.get('transfer')).get('bank')}]]</span>
+        <span th:if="${jsonObject.get('method') == '휴대폰'}">[[${((JSONObject)jsonObject.get('mobilePhone')).get('customerMobilePhone')}]]</span>
+    </p>
+*/-->
+                            <!--/* 결제 성공 시 */-->
+    <h1 th:if="${isSuccess}"><span class="greentext">결</span>제가 완료되었습니다</h1>
+    <p th:if="${isSuccess}">주문번호 : [[${jsonObject.get('orderId')}]]</p>
+    <p th:if="${isSuccess}">결제내용 : [[${jsonObject.get('orderName')}]]</p>
+    <p th:if="${isSuccess}">결제금액 : [[${jsonObject.get('totalAmount')}]] 원</p>
+    <p th:if="${isSuccess}">결제일시 : [[${jsonObject.get('approvedAt')}]]</p>
+
+                            <!--/* 결제 실패 시 */-->
+    <h1 th:unless="${isSuccess}">결제 실패</h1>
+    <p th:unless="${isSuccess}">[[${jsonObject.get('message')}]]</p>
+    <span th:unless="${isSuccess}">에러코드: [[${jsonObject.get('code')}]]</span>
+</section>
+<script th:inline="javascript">
+
+    /* 페이지 로드후 ajax 전송 */
+    window.onload = function() {
+
+            /* 창 렌더링 설정 */
+        window.resizeTo(460, 370);
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const windowWidth = 460; // 원하는 가로 크기
+        const windowHeight = 370; // 원하는 세로 크기
+        const left = (screenWidth - windowWidth) / 2;
+        const top = (screenHeight - windowHeight) / 2;
+
+        window.moveTo(left, top);
+
+        if ([[${isSuccess}]]) {
+            var urlV = '/ftossinsert?cnum=' + [[${cnum}]];
+            var urlsec = '&pnum=' + [[${pnum}]];
+            var urlpush = '/push?pushfilter=' + '결제';
+
+            $.ajax({
+                url: urlV + urlsec,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify([[${jsonObject}]]),
+                success: function(response) {
+
+                    // push
+                    $.ajax({
+                        url: urlpush,
+                        type: "GET",
+                        contentType: "application/json",
+                        data: null,
+                        success: function(response) {
+
+                            alert("결제성공");
+
+
+                        },
+                        error: function(xhr, status, error) {
+
+                            alert("fail-push알림 전송 실패");
+                        }
+                    });
+
+                },
+                error: function(xhr, status, error) {
+
+                    alert("fail-결제 실패");
+                }
+            });
+        }else{
+
+        }
+    }
+
+    function confirmCloseWindow() {
+
+        window.close();
+    }
+</script>
+<button id="asdf" class="pmbtn" onclick="confirmCloseWindow()"> 닫기 </button>
+</body>
+</html>

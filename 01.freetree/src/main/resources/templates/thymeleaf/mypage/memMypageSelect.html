@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="mypage.css" type="text/css" rel="stylesheet">
+
+  <title>MyPage</title>
+</head>
+
+<body>
+<div id="top">
+  <div id="pro">
+    <img src="profile.jpg">
+  </div>
+  <div>
+    <div id="info">
+      <h1>Hong Gil Dong</h1>
+      <h3>kosmo129@gmail.com</h3>
+    </div>
+    <div id="">
+      <input type="text" style="width: auto; height: 30px; margin-left: 50px; margin-bottom: 15px;">
+    </div>
+    <div class="sns">
+      <img src="github.png" onclick="">
+      <img src="instar.png" onclick="">
+
+      <button id="btn">내 정보 수정</button>
+    </div>
+  </div>
+</div><hr>
+
+<div id="con1">
+  <h2>소개서</h2>
+  <button id="btn1">이력서 확인</button>
+</div>
+<hr>
+<div id="con2">
+  <textarea>내용</textarea>
+</div>
+<div class="con3">
+            <span class="count">
+                첨부파일
+                <strong>(0)</strong>
+            </span>
+  <button type="button" class="btn3" onclick="toggleHiddenContent(1)"></button>
+</div>
+<div id="hiddenContent1" class="hidden">
+  <p>내용 보여라</p>
+</div>
+<hr>
+<div class="con3">
+            <span class="count">
+                진행중인 프로젝트
+                <strong>(0)</strong>
+            </span>
+  <button type="button" class="btn3" onclick="toggleHiddenContent(2)"></button>
+</div>
+<div id="hiddenContent2" class="hidden">
+  <p>내용 보여라</p>
+</div>
+<hr>
+<div class="con3">
+            <span class="count">
+                참여기록
+                <strong>(0)</strong>
+            </span>
+  <button type="button" class="btn3" onclick="toggleHiddenContent(3)"></button>
+</div>
+<div id="hiddenContent3" class="hidden">
+  <p>내용 보여라</p>
+</div>
+<hr>
+<script src="mypage.js"></script>
+</div>
+</body>
+</html>

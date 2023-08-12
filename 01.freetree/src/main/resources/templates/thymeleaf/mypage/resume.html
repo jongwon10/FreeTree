@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="/css/resume.css" type="text/css" rel="stylesheet">
+    <script src="/js/resume.js"></script>
+</head>
+<body>
+<form name="resumeForm" id="resumeForm">
+<div id="top">
+    <div id="pro">
+        <img src="/img/profile.jpg">
+    </div>
+
+    <div>
+        <div id="info">
+            <h1>Hong Gil Dong</h1>
+            <h3>kosmo129@gmail.com</h3>
+        </div>
+
+        <div id="">
+            <select class="drop">
+                <option>포지션1</option>
+                <option>포지션2</option>
+                <option>포지션3</option>
+            </select>
+            <select class="drop">
+                <option value="1">포지션1</option>
+                <option value="2">포지션2</option>
+                <option value="3">포지션3</option>
+            </select>
+            <select class="drop">
+                <option value="1">포지션1</option>
+                <option value="2">포지션2</option>
+                <option value="3">포지션3</option>
+            </select>
+        </div>
+        <div class="sns">
+            <img src="/img/github.png">
+            <input type="text" placeholder="깃허브">
+            <img src="/img/instar.png">
+            <input type="text" placeholder="인스타">
+            <button id="btn">수정 확인</button>
+        </div>
+    </div>
+</div><hr>
+
+<div class="container">
+    <div class="basic">
+        <p><span>기</span>본 정보</p>
+        <button type="button" class="btn">확인</button>
+    </div>
+    <table class="t">
+        <tr>
+            <th class="b">성 명</th>
+            <td><input type="text" class="text"></td>
+            <th class="b1">영 문</th>
+            <td><input type="text" class="text"></td>
+        </tr>
+        <tr>
+            <th class="b">생년월일</th>
+            <td><input type="text" class="text"></td>
+            <th class="b1">휴대폰</th>
+            <td><input type="text" class="text"></td>
+        </tr>
+        <tr>
+            <th class="b">주소</th>
+            <td colspan="3"><input type="text" class="text"></td>
+        </tr>
+    </table>
+
+    <div class="basic1">
+        <p><span>학</span>력 사항</p>
+        <button type="button" class="btn1"></button>
+    </div>
+    <table class="tt">
+        <tr>
+            <th class="bb">재학기간</th>
+            <th class="bb">학교명</th>
+            <th class="bb">전공명</th>
+            <th class="bb1">비고</th>
+        </tr>
+        <tr>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb3">
+                <input type="text" class="text">
+            </td>
+        </tr>
+    </table>
+
+    <div class="basic1">
+        <p><span>경</span>력 사항</p>
+        <button type="button" class="btn1"></button>
+    </div>
+    <table class="tt">
+        <tr>
+            <th class="bb">근무 기간</th>
+            <th class="bb">담당 업무</th>
+            <th class="bb1">직장명</th>
+        </tr>
+        <tr>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb3">
+                <input type="text" class="text">
+            </td>
+        </tr>
+    </table>
+
+    <div class="basic1">
+        <p><span>자</span>격증 및 특기사항</p>
+        <button type="button" class="btn1"></button>
+    </div>
+    <table class="tt">
+        <tr>
+            <th class="bb">취득일</th>
+            <th class="bb">자격증 / 면허증</th>
+            <th class="bb1">발행처</th>
+        </tr>
+        <tr>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb2">
+                <input type="text" class="text">
+            </td>
+            <td class="bb3">
+                <input type="text" class="text">
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="con">
+    <div class="con1">
+        <div class="con1_title"><span>진</span>행중인 프로젝트(0)</div>
+        <button type="button" class="btn3" onclick="toggleHiddenContent(1)"></button>
+    </div>
+    <div id="hiddenContent1" class="hidden">
+        <p>내용 보여라</p>
+    </div>
+</div>
+
+<hr>
+<div class="con3">
+        <span class="count">
+            참여기록
+            <strong>(0)</strong>
+        </span>
+    <button type="button" class="btn3" onclick="toggleHiddenContent(2)"></button>
+</div>
+<div id="hiddenContent2" class="hidden">
+    <p>내용 보여라</p>
+</div>
+<hr>
+</form>
+</body>
+</html>

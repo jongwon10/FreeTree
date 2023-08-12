@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/account/account.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <link href="/css/account/account.css" rel="stylesheet" type="text/css">
+    <script src="/js/account/pwcheck.js"></script>
+    <script src="/js/account/checkAll.js"></script>
+    <title>회원 가입</title>
+
+
+    <script>
+
+        // 개인 가입 버튼
+        $(document).on("click", "#membtn", function(){
+            console.log("membtn >>> : ");
+
+            $('#maccount').attr({
+                "action":"/mem",
+                "method":"POST",
+                "enctype":"multipart/form-data"
+            }).submit();
+        });
+
+        // 기업 가입 버튼
+        $(document).on("click", "#combtn", function(){
+            console.log("combtn >>> : ");
+
+            $('#caccount').attr({
+                "action":"/com",
+                "method":"POST",
+                "enctype":"multipart/form-data"
+            }).submit();
+        });
+
+        // 우편번호 찾기
+        $(document).on("click", "#postalcode", function() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $("#cpostalcode").val(data.zonecode);
+                    $("#croadaddr").val(data.roadAddress);
+                    $("#caddr").val(data.jibunAddress);
+                }
+            }).open();
+        });
+
+        // 개인 비밀번호 확인
+        $(document).on("click", "#pw_btn", function() {
+            var pw = $("#mpw").val();
+            var pw_check = $("#mpw_check").val();
+            console.log(pw_check + ":" + typeof(pw_check));
+
+            var _pw = pwCheck(pw);
+            var _pw_check = pwCheck(pw_check);
+            console.log(_pw_check);
+
+            if(_pw ==false){
+                $("#mpw").val("");
+                $("#mpw").focus();
+            }
+
+            if(_pw_check == false){
+                $("#mpw_check").val("");
+                $("#mpw_check").focus();
+            }
+
+            if (_pw && _pw_check && pw === pw_check) {
+                // 비밀번호와 비밀번호 확인이 일치하면
+                alert("비밀번호가 일치했습니다!");
+            } else {
+                // 비밀번호와 비밀번호 확인이 일치하지 않으면
+                alert("비밀번호가 일치하지 않습니다!");
+            }
+        });
+
+        // 기업 비밀번호 확인
+        $(document).on("click", "#cw_btn", function() {
+            var pw = $("#cpw").val();
+            var pw_check = $("#cpw_check").val();
+            console.log(pw_check + ":" + typeof(pw_check));
+
+            var _pw = pwCheck(pw);
+            var _pw_check = pwCheck(pw_check);
+            console.log(_pw_check);
+
+            if(_pw == false){
+                $("#cpw").val("");
+                $("#cpw").focus();
+            }
+
+            if(_pw_check == false){
+                $("#cpw_check").val("");
+                $("#cpw_check").focus();
+            }
+
+            if (_pw && _pw_check && pw === pw_check) {
+                // 비밀번호와 비밀번호 확인이 일치하면
+                alert("비밀번호가 일치했습니다!");
+            } else {
+                // 비밀번호와 비밀번호 확인이 일치하지 않으면
+                alert("비밀번호가 일치하지 않습니다!");
+            }
+        });
+
+    </script>
+    <script>
+        function openPopup(page) {
+            // 작은 창으로 페이지를 열기 위해 윈도우 옵션을 설정합니다.
+            var windowFeatures = "width=1000,height=700,scrollbars=yes";
+
+            // window.open() 메서드를 사용하여 새 창을 엽니다.
+            window.open(page, "_blank", windowFeatures);
+        }
+    </script>
+<style>
+    .articles-color{
+        color: rebeccapurple;
+        cursor: pointer;
+    }
+
+    .privacy-color{
+        color: rebeccapurple;
+        cursor: pointer;
+    }
+
+    .marketing-color{
+        color: rebeccapurple;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+<body>
+
+    <div id="in">
+        <h4>회원가입</h4>
+        <hr>
+        <div id="mainbtn">
+        <button id="personal" onclick="showPersonalForm()">개인회원</button>
+        <button id="corporate" onclick="showCorporateForm()">기업회원</button>
+        </div>
+        <hr />
+
+        <form name="maccount" id="maccount" action="../../../../../../../../../Users/komso/Desktop/메추라기/20230726_박종원/src/main/resources/templates/thymeleaf/account/memInsertSuccess.html?memail=" method="POST">
+            <!-- 개인회원 -->
+            <div id="personalForm" style="display: block;">
+                <div>
+                    <p style="margin-left: 20px;">간편 로그인</p><br>
+                    <div id="snsimg">
+                    <a><img src="/img/account/naver.png"></a>
+                    <a><img src="/img/account/kakao.png"></a>
+                    <a><img src="/img/account/google.png"></a>
+                    </div>
+                </div><br>
+                <table id="t">
+                        <tr>
+                            <td>
+                                <input type="text" class="t1" name="memail" id="memail" placeholder="이메일(ID@gmail.com)" onkeyup="checkForm_m()" required>
+                                <input type="password" name="mpw" id="mpw" placeholder=" 비밀번호(영문,숫자,특수기호 포함 8자 이상)" autocomplete="current-password" onkeyup="checkForm_m()">
+                                <input type="password" name="mpw1" id="mpw_check" placeholder=" 비밀번호 확인" autocomplete="current-password" onkeyup="checkForm_m()">
+                                <button type="button" class="t2_2" id="pw_btn" value="">비밀번호 확인</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="t2_1" name="mname" id="mname" placeholder="이름" onkeyup="checkForm_m()" required>
+                                <input type="text" class="t3" name="mnick" id="mnick" placeholder="닉네임" minlength="2" onkeyup="checkForm_m()" required>
+                                <input type="text" class="t2_1" name="mbirth" id="mbirth" placeholder="생년월일(xxxx-xx-xx)" onkeyup="checkForm_m()" required>
+                                <input type="radio" name="mgender" id="mgender_m" value="M" checked /> 남자
+                                <input type="radio" name="mgender" id="mgender_f" value="F" /> 여자
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="t1" name="mhp" id="mhp" placeholder="휴대폰 번호(xxx-xxxx-xxxx)" onkeyup="checkForm_m()">
+                                <p class="blank"></p>
+                                <p class="blank"></p>
+                                <p class="blank"></p>
+
+                            </td>
+                        </tr>
+                </table>
+                <!-- 공통 가입 양식 -->
+                <div class="cb">
+                    <input type="checkbox" name="mterms" id="checkAllcb" value="mt1" onclick="checkAllm()"> 전체 확인<br>
+                    <hr>
+                    <input type="checkbox" name="mterms"  value="mt2" required> 만 14세 이상입니다.(필수)<br>
+                    <input type="checkbox" name="mterms"  value="mt3" required> <a  onclick="openPopup('articles')"><span class="articles-color">서비스 이용약관</span></a> 동의(필수)<br>
+                    <input type="checkbox" name="mterms"  value="mt4" required> <a  onclick="openPopup('privacy')"><span class="privacy-color">개인정보 수집</span></a> 및 이용동의(필수)<br>
+                    <input type="checkbox" name="mterms"  value="mt5"> <a  onclick="openPopup('marketing')"><span class="marketing-color">광고성 정보</span></a> 수집 동의<br><br>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" id="membtn" disabled>가입</button>
+                </div>
+            </div>
+        </form>
+
+
+        <form name="caccount" id="caccount">
+        <!-- 기업회원 -->
+            <div id="corporateForm" style="display: none;">
+                <table id="tt">
+                    <tr>
+                        <td>
+                            <input type="text" class="t1" name="ccomtype" id="ccomtype" placeholder="기업 형태(대,중,중견,소,벤처기업,개인사업자 등)" onkeyup="checkForm_c()" required><br>
+                            <input type="text"class="t1" name="cbiznum" id="cbiznum" placeholder="사업자등록번호(xxx-xx-xxxxx)" onkeyup="checkForm_c()" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="t2_1" name="cname" id="cname" placeholder="기업명" onkeyup="checkForm_c()" required>
+                            <input type="text" class="t3" name="cdelegate" id="cdelegate" placeholder="대표자명"  onkeyup="checkForm_c()" required>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="t2_1" name="cpostalcode" id="cpostalcode" placeholder="우편번호" onkeyup="checkForm_c()" readonly required>
+                            <button type="button" class="t2_2" name="postalcode" id="postalcode" required>우편번호 찾기</button>
+                            <input type="text" class="t2_1" name="croadaddr" id="croadaddr" placeholder="회사 도로명 주소" onkeyup="checkForm_c()" readonly required>
+                            <input type="text" class="t3" name="croaddetail" id="croaddetail" placeholder="회사 도로명 상세주소" onkeyup="checkForm_c()">
+                            <input type="text" class="t2_1" name="caddr" id="caddr" placeholder="회사 지번 주소" onkeyup="checkForm_c()" readonly required>
+                            <input type="text" class="t3" name="ctel" id="ctel" placeholder="회사 전화번호(TEL)" onkeyup="checkForm_c()">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="t1" name="cemail" id="cemail" placeholder="이메일(아이디)" onkeyup="checkForm_c()" required>
+                            <input type="password" name="cpw" id="cpw" placeholder=" 비밀번호(영문,숫자,특수기호 포함 8자 이상)" autocomplete="current-password" onkeyup="checkForm_c()" minlength="8" required>
+                            <input type="password" name="cpw1" id="cpw_check" placeholder=" 비밀번호 확인" autocomplete="current-password" onkeyup="checkForm_c()" minlength="8" required>
+                            <button type="button" class="t2_2" id="cw_btn" value="">비밀번호 확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="t1" name="cpersonnel" id="cpersonnel" placeholder="담당자명" required>
+                            <input type="text" class="t1" name="chp" id="chp" placeholder="휴대폰(xxx-xxxx-xxxx)" onkeyup="checkForm_c()" required>
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+                <!-- 공통 가입 양식 -->
+                <div class="cb">
+                    <input type="checkbox" name="cterms" value="ct1" onclick="checkAllc()"> 전체 확인<br>
+                    <hr>
+                    <input type="checkbox" name="cterms" value="ct2" required> 만 14세 이상입니다.(필수)<br>
+                    <input type="checkbox" name="cterms" value="ct3" required>  <a onclick="openPopup('articles')"><span class="articles-color">서비스 이용약관</span></a> 동의(필수)<br>
+                    <input type="checkbox" name="cterms" value="ct4" required> <a onclick="openPopup('privacy')"><span class="privacy-color">개인정보 수집</span></a> 및 이용동의(필수)<br>
+                    <input type="checkbox" name="cterms" value="ct5"> <a onclick="openPopup('marketing')"><span class="marketing-color">광고성 정보</span></a> 수집 동의<br><br>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" id="combtn" disabled>가입</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

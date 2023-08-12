@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>매칭 수수료 결제</title>
+  <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+  <style>
+      .pmbtn {
+        background-color: #1DB088;
+        color: #ffffff;
+        margin-left: 30px;
+        width: 150px;
+        height: 35px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+<div id="payment-method"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<button id="payment-request-button" class="pmbtn">결제하기</button>
+<script>
+
+  /* 기업코드 cnum 가져오기  */
+  var cnum="[[${cnum}]]";
+  var pnum="[[${pnum}]]"
+  ;
+  $(document).ready(function(){
+    console.log("cnum : " + cnum);
+    console.log("pnum : " + pnum);
+  });
+</script>
+<input type="hidden" id="cnum" th:value="${cnum}" />
+<input type="hidden" id="pnum" th:value="${pnum}" />
+
+<script>
+  const paymentWidget = PaymentWidget(
+          "test_ck_LBa5PzR0Arn1WXNg0wvVvmYnNeDM",
+          // 비회원 customerKey
+          PaymentWidget.ANONYMOUS
+  );
+
+  /**
+   * 결제창을 렌더링합니다.
+   * @docs https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods%EC%84%A0%ED%83%9D%EC%9E%90-%EA%B2%B0%EC%A0%9C-%EA%B8%88%EC%95%A1
+   */
+  paymentWidget.renderPaymentMethods("#payment-method", { value: 8943480 });
+
+  const paymentRequestButton = document.getElementById(
+          "payment-request-button"
+  );
+  paymentRequestButton.addEventListener("click", () => {
+    /** 결제 요청
+     * @docs https://docs.tosspayments.com/reference/widget-sdk#requestpayment%EA%B2%B0%EC%A0%9C-%EC%A0%95%EB%B3%B4
+     */
+    paymentWidget.requestPayment({
+      orderId: generateRandomString(),
+      orderName: "프로젝트 매칭 수수료(지급 임금의 7.5%)",
+      successUrl: window.location.origin + "/ftosswidgetcheck?cnum=" + cnum + '&pnum=' + pnum,
+      failUrl: window.location.origin + "/ftosswidgetfail",
+    });
+  });
+
+  function generateRandomString() {
+    return window.btoa(Math.random()).slice(0, 20);
+  }
+</script>
+</body>
+</html>

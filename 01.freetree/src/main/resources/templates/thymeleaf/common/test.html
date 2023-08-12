@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/css/common/main.css" type="text/css" rel="stylesheet">
+<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function() {
+		$.ajax({
+			url: "/header", // 헤더를 반환하는 엔드포인트
+			success: function(data) {
+				$("#header").html(data);
+			}
+		});
+
+		$.ajax({
+			url: "/footer", // 푸터를 반환하는 엔드포인트
+			success: function(data) {
+				$("#footer").html(data);
+			}
+		});
+	});
+</script>
+<script>
+	window.addEventListener('DOMContentLoaded', function() {
+		var section1 = document.getElementById('section_1');
+		var imgWrap1 = document.getElementById('slide_next_button');
+		var imgWrap2 = document.getElementById('slide_prev_button');
+
+		var slideWidth = section1.offsetWidth; // section_1의 너비
+
+		var currentPosition = 0;
+		var isSliding = false;
+
+		    function slideLeft() {
+				if (!isSliding && currentPosition > -slideWidth) {
+			  		isSliding = true;
+				  	currentPosition -= slideWidth;
+			  		section1.style.transform = 'translateX(' + -50 + '%)';
+			  		setTimeout(function() {
+						isSliding = false;
+			  		}, 500); // 애니메이션 시간(0.5초) 후에 슬라이딩 상태 초기화
+				}
+		  	}
+
+		  	function slideRight() {
+				if (!isSliding && currentPosition < 0) {
+			  		isSliding = true;
+			  		currentPosition += slideWidth;
+			  		section1.style.transform = 'translateX(' + 0 + '%)';
+					setTimeout(function() {
+						isSliding = false;
+			  		}, 500); // 애니메이션 시간(0.5초) 후에 슬라이딩 상태 초기화
+				}
+			}
+
+		imgWrap1.addEventListener('click', slideLeft);
+		imgWrap2.addEventListener('click', slideRight);
+	});
+</script>
+</head>
+<body>
+<div id="header"></div>
+<div id="section_1_parent">
+	<section id="section_1">
+		<div id="img_wrap_1">
+			<img id="pr_img" src="/img/main/mainimg1.jpg" alt="메인 로고">
+			<input type="button" id="pr_btn" class="pr_btn" value="프리랜서 등록하기">
+		</div>
+		<div id="img_wrap_2">
+			<img id="pj_img" src="/img/main/mainimg2.jpg" alt="메인 로고">
+			<input type="button" id="pj_btn" class="pj_btn" value="프로젝트 등록하기">
+		</div>
+	</section>
+	  <div id="slide_prev_button">◀</div>
+      <div id="slide_next_button">▶</div>
+</div>
+<!-- section_1 end -->
+
+<section id="section_2"></section>
+<!-- section_2 end -->
+
+<section id="section_3"></section>
+<!-- section_3 end -->
+<div id="footer"></div>
+
+</body>
+</html>

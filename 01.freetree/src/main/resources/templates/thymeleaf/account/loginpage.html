@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maxinum-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/account/loginpage.css">
+    <script src="/js/account/loginpage.js"></script>
+<title>login page</title>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#mpw').on('keypress', function (e) {
+                if (e.which === 13) { // 엔터 키의 keyCode는 13입니다.
+                    e.preventDefault(); // 기본 동작인 폼 제출을 막습니다.
+                    login(); // 로그인 함수 호출
+                }
+            });
+            $('#cpw').on('keypress', function (e) {
+                if (e.which === 13) { // 엔터 키의 keyCode는 13입니다.
+                    e.preventDefault(); // 기본 동작인 폼 제출을 막습니다.
+                    login2(); // 로그인 함수 호출
+                }
+            });
+            // 개인회원 아이디,비번
+            $("#memail").attr('placeholder', '이메일');
+            $("#mpw").attr('placeholder', '비밀번호');
+            // 기업회원 아이디,비번
+            $("#cemail").attr('placeholder', '이메일');
+            $("#cpw").attr('placeholder', '비밀번호');
+
+            // 로그인 버튼 클릭시 login 함수이동
+            $("#loginBtn").click(login);
+            $("#loginBtn2").click(login2);
+
+
+        });
+        function login() {
+            console.log("loginBtn >>> : ");
+
+            $('#memLoginForm').attr({
+                'action': '/memloginCheck',
+                'method': 'POST',
+                'enctype': 'application/x-www-form-urlencoded'
+            }).submit();
+        }
+            function login2() {
+                console.log("loginBtn >>> : ");
+
+                $('#comLoginForm').attr({
+                    'action': 'comloginCheck',
+                    'method': 'POST',
+                    'enctype': 'application/x-www-form-urlencoded'
+                }).submit();
+            }
+
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <h2 class="view" align="center"><img src="/img/account/mainlogowan02.png" style="padding-top: 40px"></h2>
+    <hr>
+    <div id="mainbtn">
+        <button id="personal" onclick="showPersonalForm()">개인회원</button>
+        <button id="corporate" onclick="showCorporateForm()">기업회원</button>
+    </div>
+    <hr>
+    <div id="personalForm" style="display: block;">
+
+        <div class="fr">
+            <input type="checkbox" id="cb">
+            <label for="cb" id="save-email">이메일 저장</label>
+            <div class="card-body">
+                <form class="form-signin" id="memLoginForm">
+                    <div class="in">
+                        <input type="text" class="id" id="memail" name="memail" placeholder="이메일" required autofocus><br>
+                        <input type="password" class="pw" id="mpw" name="mpw" placeholder="비밀번호" required><br>
+                    </div>
+                    <div class="b1">
+                        <a class="btn01" href="/maccount">회원가입</a>
+                        <div class="bb1">
+                        <a class="btn02" type="submit" href="#">아이디 </a>
+                        <a type="text">/</a>
+                        <a class="btn02" type="submit" href="#">비밀번호 찾기</a>
+                        </div>
+                    </div>
+                    <input type="button" class="loginBtn" id="loginBtn" value="로그인">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="corporateForm" style="display: none;">
+        <div class="fr">
+            <input type="checkbox" id="cb1">
+            <label for="cb" id="save-email1">이메일 저장</label>
+            <div class="card-body">
+                <form class="form-signin" id="comLoginForm">
+                    <div class="in">
+                        <input type="text" class="id" id="cemail" name="cemail" placeholder="이메일" required autofocus><br>
+                        <input type="password" class="pw" id="cpw" name="cpw" placeholder="비밀번호" required><br>
+                    </div>
+                    <div class="b1">
+                        <a class="btn01" href="/maccount">회원가입</a>
+                        <div class="bb1">
+                        <a class="btn02" type="submit" href="#">아이디</a>
+                        <a type="text">/</a>
+                        <a class="btn02" type="submit" href="#">비밀번호 찾기</a>
+                    </div>
+                    </div>
+                    <input type="button" class="loginBtn" id="loginBtn2" value="로그인">
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>

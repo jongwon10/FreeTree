@@ -1,0 +1,31 @@
+   연결별 DNS 접미사. . . . :
+   링크-로컬 IPv6 주소 . . . . : fe80::93f5:2980:ceda:c827%15
+   IPv4 주소 . . . . . . . . . : 192.168.0.60
+   서브넷 마스크 . . . . . . . : 255.255.255.0
+   기본 게이트웨이 . . . . . . : 192.168.0.1
+
+
+
+
+오라클 비밀번호 orcl00
+         port      8088
+         192.168.0.60:8088
+
+Mysql root/admin1234
+        192.168.0.60:3306
+        mysql 사용시 USE freetree; 실행 후 사용
+        아이디 비번 동일
+        조수연: csy
+        윤준혁:yjh
+        강은자:gej
+        홍성규:hsg
+        강도희:gdh
+        강동우:gdw
+        박종원:pjw
+        신성호:root
+create user 'csy'@'localhost' identified by 'csy';
+create user 'csy'@% identified by 'csy';
+create user 'csy'@% identified by 'csy';
+GRANT ALL PRIVILEGES ON *.* TO ''@'';
+mongodb 설정중
+	mongodb://192.168.0.60:27017
